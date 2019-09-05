@@ -27,8 +27,8 @@ We will provision the whole environment with AWS CDK.
 git clone this repository and cd to the `cdk` directory.
 
 ```bash
-git clone https://github.com/pahud/fargate-fast-autoscaling.git
-cd fargate-fast-autoscaling/cdk
+git clone https://github.com/aws-samples/aws-fargate-fast-autoscaler.git
+cd aws-fargate-fast-autoscaler/cdk
 ```
 
 ### Setup AWS CDK envorinment
