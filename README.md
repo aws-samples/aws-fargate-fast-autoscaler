@@ -96,13 +96,12 @@ By default, the lambda function will have **disable_scalein=yes** as the environ
 
 # Clean Up
 
-Simply **cdk destroy** to delete all resources of the two stacks.
+Simply **cdk destroy** to delete all resources in the stack
 
 ```bash
-# destroy the two stacks 
-cdk destroy fargate*
+# destroy the stack
+cdk destroy 
 ```
-
 
 
 ## License Summary
