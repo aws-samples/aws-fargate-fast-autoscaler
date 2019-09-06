@@ -7,6 +7,7 @@ import sfn = require('@aws-cdk/aws-stepfunctions');
 import sfn_tasks = require('@aws-cdk/aws-stepfunctions-tasks');
 import lambda = require('@aws-cdk/aws-lambda');
 import sns = require('@aws-cdk/aws-sns');
+
 import { CfnResource } from "@aws-cdk/core";
 
 
@@ -17,7 +18,8 @@ const AWSCLI_LAYER_VERSION = '1.16.232'
 export class AwsFargateFastAutoscalerStack extends cdk.Stack {
   public readonly fargateWatcherFuncArn: string;
   public readonly layerVersionArn: string;
-
+  public readonly fargateService: ecs.FargateService;
+  public readonly fargateTaskDef: ecs.FargateTaskDefinition
 
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -67,6 +69,8 @@ export class AwsFargateFastAutoscalerStack extends cdk.Stack {
       taskRole: taskIAMRole,
     })
 
+    this.fargateTaskDef = demoTaskDef
+
     const mainContainer = demoTaskDef.addContainer('main', {
       image: ecs.ContainerImage.fromAsset('./nginx', {}),
       cpu: 0,
@@ -98,6 +102,8 @@ export class AwsFargateFastAutoscalerStack extends cdk.Stack {
       taskDefinition: demoTaskDef,
       securityGroup: sg,
     });
+
+    this.fargateService = demoService
 
 
     const externalLB = new elbv2.ApplicationLoadBalancer(this, 'external', {

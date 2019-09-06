@@ -7,20 +7,23 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
+    "test": "npm run build && nodeunit test",
     "cdk": "cdk"
   },
   "devDependencies": {
     "@types/node": "8.10.45",
-    "aws-cdk": "^1.6.1",
+    "aws-cdk": "^1.7.0",
     "ts-node": "^8.1.0",
+    "@aws-cdk/assert": "^1.7.0",
+    "@types/nodeunit": "0.0.30",
     "typescript": "^3.3.3333"
   },
   "dependencies": {
-    "@aws-cdk/aws-ecs": "^1.6.1",
-    "@aws-cdk/aws-sam": "^1.6.1",
-    "@aws-cdk/aws-stepfunctions": "^1.6.1",
-    "@aws-cdk/aws-stepfunctions-tasks": "^1.6.1",
-    "@aws-cdk/core": "^1.6.1",
+    "@aws-cdk/aws-ecs": "^1.7.0",
+    "@aws-cdk/aws-sam": "^1.7.0",
+    "@aws-cdk/aws-stepfunctions": "^1.7.0",
+    "@aws-cdk/aws-stepfunctions-tasks": "^1.7.0",
+    "@aws-cdk/core": "^1.7.0",
     "source-map-support": "^0.5.9"
   }
 }
