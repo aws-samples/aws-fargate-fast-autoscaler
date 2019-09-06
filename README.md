@@ -66,19 +66,19 @@ On deployment complete, you'll see the URL in the Outputs:
 
 Open this URL and you will see the Caddy web server welcome page with phpinfo.
 
-![](/Users/pahud/github/aws-fargate-fast-autoscaler/images/php-welcome.png)
+![](images/php-welcome.png)
 
 
 
 And if you append `/nginx_status` in the URL and reload the page, you'll see this page:
 
-![](/Users/pahud/github/aws-fargate-fast-autoscaler/images/nginx-status.png)
+![](images/nginx-status.png)
 
 ### Start your state machine
 
 Go to Step Function console and click **start execution** on the state machines. Leave the execution name and input column as is and click **start execution** again. Your state machine will be running. Behind the scene the step function will invoke a Lambda function to collect **Active Connections** number from nginx reverse proxy on each fargate task and determine a new desired number of fargate tasks to scale. Typically it would just take **less than 10 seconds** before it starts to scale.
 
-![](/Users/pahud/github/aws-fargate-fast-autoscaler/images/stepfunc.png)
+![](images/stepfunc.png)
 
 # SNS Service Integration
 
@@ -96,13 +96,12 @@ By default, the lambda function will have **disable_scalein=yes** as the environ
 
 # Clean Up
 
-Simply **cdk destroy** to delete all resources of the two stacks.
+Simply **cdk destroy** to delete all resources in the stack
 
 ```bash
-# destroy the two stacks 
-cdk destroy fargate*
+# destroy the stack
+cdk destroy 
 ```
-
 
 
 ## License Summary
