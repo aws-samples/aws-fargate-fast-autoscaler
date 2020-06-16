@@ -43,5 +43,44 @@
       "rtb-7dfa5f1a",
       "rtb-7dfa5f1a"
     ]
+  },
+  "vpc-provider:account=903779448426:filter.isDefault=true:region=us-west-2": {
+    "vpcId": "vpc-a522d7dc",
+    "availabilityZones": [
+      "us-west-2a",
+      "us-west-2b",
+      "us-west-2c",
+      "us-west-2d"
+    ],
+    "privateSubnetIds": [
+      "subnet-08b2d414ad87fb172",
+      "subnet-0d0069776469b2e0d",
+      "subnet-0e0a074fc211df2ac",
+      "subnet-023a0778a5605ae13"
+    ],
+    "privateSubnetNames": [
+      "Private"
+    ],
+    "privateSubnetRouteTableIds": [
+      "rtb-0c99af140fbbe3b17",
+      "rtb-0c99af140fbbe3b17",
+      "rtb-0c99af140fbbe3b17",
+      "rtb-0c99af140fbbe3b17"
+    ],
+    "publicSubnetIds": [
+      "subnet-0c16aec6d2bece81d",
+      "subnet-050929f8c6efb7657",
+      "subnet-061c38942c5b3afa8",
+      "subnet-05685883c2773c212"
+    ],
+    "publicSubnetNames": [
+      "Public"
+    ],
+    "publicSubnetRouteTableIds": [
+      "rtb-48a79931",
+      "rtb-48a79931",
+      "rtb-48a79931",
+      "rtb-48a79931"
+    ]
   }
 }
