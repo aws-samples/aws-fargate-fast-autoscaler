@@ -4,8 +4,6 @@ import { AwsLogDriver, ContainerImage } from '@aws-cdk/aws-ecs';
 import { FargateFastAutoscaler } from '../autoscaler';
 import * as path from 'path';
 
-
-
 const app = new cdk.App()
 
 const env = {

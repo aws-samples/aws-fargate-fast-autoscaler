@@ -1,22 +1,19 @@
 
-[![NPM version](https://badge.fury.io/js/cdk-fargate-fastautlscaler.svg)](https://badge.fury.io/js/cdk-fargate-fastautlscaler)
-[![PyPI version](https://badge.fury.io/py/cdk-fargate-fastautlscaler.svg)](https://badge.fury.io/py/cdk-fargate-fastautlscaler)
+[![NPM version](https://badge.fury.io/js/cdk-fargate-fastautoscaler.svg)](https://badge.fury.io/js/cdk-fargate-fastautoscaler)
+[![PyPI version](https://badge.fury.io/py/cdk-fargate-fastautoscaler.svg)](https://badge.fury.io/py/cdk-fargate-fastautoscaler)
 ![Release](https://github.com/aws-samples/aws-fargate-fast-autoscaler/workflows/Release/badge.svg)
 
 ## aws-fargate-fast-autoscaler
 
-**AWS Fargate Fast Autosaler** - A Serverless Implementation that Triggers your AWS Fargate autoscaling in seconds with `cdk-fargate-fastautlscaler`.
+**AWS Fargate Fast Autosaler** - A Serverless Implementation that Triggers your AWS Fargate autoscaling in seconds with `cdk-fargate-fastautoscaler`.
 
-## cdk-fargate-fastautlscaler
+## cdk-fargate-fastautoscaler
 
-`cdk-fargate-fastautlscaler` is a [aws/jsii](https://github.com/aws/jsii) construct library for AWS CDK.
+`cdk-fargate-fastautoscaler` is a [aws/jsii](https://github.com/aws/jsii) construct library for AWS CDK.
 
 By building your AWS CDK stacks with `cdk-fargate-fastautoscaler`, you can create your customized Fargate workload with the fast autoscaling capabilities.
 
-
-
 ![](images/fargate-fast-autoscaler.png)
-
 
 
 # How it works
@@ -33,7 +30,7 @@ The following CDK sample creates a PHP service in AWS Fargate with the nginx as 
 import * as cdk from '@aws-cdk/core'
 import * as ec2 from '@aws-cdk/aws-ec2';
 import { AwsLogDriver, ContainerImage } from '@aws-cdk/aws-ecs';
-import { FargateFastAutoscaler } from 'cdk-fargate-fastautlscaler';
+import { FargateFastAutoscaler } from 'cdk-fargate-fastautoscaler';
 import * as path from 'path';
 
 const app = new cdk.App()
@@ -52,10 +49,6 @@ new FargateFastAutoscaler(stack, 'FargateFastAutoscaler', {
   // create the backend PHP service
   backendContainer: {
     image: ContainerImage.fromAsset(path.join(__dirname, '../../sample/backend/php')),
-    cpu: 0,
-    logging: new AwsLogDriver({
-      streamPrefix: 'echo-http-req',
-    }),
   },
   // PHP service running on container port 2015
   backendContainerPortMapping: [

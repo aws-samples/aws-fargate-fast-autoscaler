@@ -5,7 +5,7 @@ const {
 
 const AWS_CDK_LATEST_RELEASE = '1.57.0';
 const CONSTRUCTS_VERSION = '3.0.4'
-const PROJECT_NAME = 'cdk-fargate-fastautlscaler';
+const PROJECT_NAME = 'cdk-fargate-fastautoscaler';
 const PROJECT_DESCRIPTION = 'A JSII construct lib to build AWS Fargate Fast Autoscaler';
 
 const project = new JsiiProject({
@@ -49,8 +49,8 @@ const project = new JsiiProject({
     '@aws-cdk/aws-stepfunctions-tasks': Semver.caret(AWS_CDK_LATEST_RELEASE),
   },
   python: {
-    distName: 'cdk-fargate-fastautlscaler',
-    module: 'cdk_fargate_fastautlscaler'
+    distName: 'cdk-fargate-fastautoscaler',
+    module: 'cdk_fargate_fastautoscaler'
   }
 });
 
