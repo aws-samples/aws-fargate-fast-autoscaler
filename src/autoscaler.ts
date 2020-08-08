@@ -55,6 +55,13 @@ export interface FargateFastAutoscalerProps {
    * @default - 2
    */
   readonly initialTaskNumber?: number
+
+  /**
+   * disable scale in
+   * 
+   * @default - true
+   */
+  readonly disableScaleIn?: boolean
 }
 
 
@@ -237,7 +244,7 @@ export class FargateFastAutoscaler extends cdk.Construct {
       environment: {
         cluster: fgCluster.clusterName,
         service: demoService.serviceName,
-        disable_scalein: 'yes',
+        disable_scalein: props.disableScaleIn === false ? 'no' : 'yes',
         region: this.region,
       },
     });

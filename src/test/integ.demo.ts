@@ -27,9 +27,7 @@ new FargateFastAutoscaler(stack, 'FargateFastAutoscaler', {
     }),
   },
   backendContainerPortMapping: [
-    {
-      containerPort: 2015,
-    },
+    { containerPort: 2015 },
   ],
 })
 

@@ -1,6 +1,17 @@
+
+[![NPM version](https://badge.fury.io/js/cdk-fargate-fastautlscaler.svg)](https://badge.fury.io/js/cdk-fargate-fastautlscaler)
+[![PyPI version](https://badge.fury.io/py/cdk-fargate-fastautlscaler.svg)](https://badge.fury.io/py/cdk-fargate-fastautlscaler)
+![Release](https://github.com/aws-samples/aws-fargate-fast-autoscaler/workflows/Release/badge.svg)
+
 ## aws-fargate-fast-autoscaler
 
-AWS Fargate Fast Autosaler - A Serverless Implementation that Triggers your Fargate Autoscaling in Seconds
+**AWS Fargate Fast Autosaler** - A Serverless Implementation that Triggers your AWS Fargate autoscaling in seconds with `cdk-fargate-fastautlscaler`.
+
+## cdk-fargate-fastautlscaler
+
+`cdk-fargate-fastautlscaler` is a [aws/jsii](https://github.com/aws/jsii) construct library for AWS CDK.
+
+By building your AWS CDK stacks with `cdk-fargate-fastautoscaler`, you can create your customized Fargate workload with the fast autoscaling capabilities.
 
 
 
@@ -14,61 +25,43 @@ Behind the scene, our workload in PHP, NodeJS, Java or Python is running with a 
 
 We are running an AWS Step Function state machine to periodically invoke the AWS Lambda function and collect active connection numbers from each Fargate Task **every 3 seconds** and determine our scaling policy in the state machine followed by immediate `ecs service update` to increase the desired number of Fargate tasks.
 
+# AWS CDK Sample
 
+The following CDK sample creates a PHP service in AWS Fargate with the nginx as the reverse proxy.
 
-# Provision with AWS CDK
+```ts
+import * as cdk from '@aws-cdk/core'
+import * as ec2 from '@aws-cdk/aws-ec2';
+import { AwsLogDriver, ContainerImage } from '@aws-cdk/aws-ecs';
+import { FargateFastAutoscaler } from '../autoscaler';
+import * as path from 'path';
 
-We will provision the whole environment with AWS CDK.
+const app = new cdk.App()
 
+const env = {
+  region: process.env.CDK_DEFAULT_REGION,
+  account: process.env.CDK_DEFAULT_ACCOUNT,
+};
 
+const stack = new cdk.Stack(app, 'FargateFastAutoscalerDemo', { env })
 
-### checkout the repository
+const vpc = ec2.Vpc.fromLookup(stack, 'Vpc', { isDefault: true })
 
-git clone this repository and cd to the `cdk` directory.
-
-```bash
-git clone https://github.com/aws-samples/aws-fargate-fast-autoscaler.git
-cd aws-fargate-fast-autoscaler/cdk
-```
-
-### Setup AWS CDK envorinment
-
-```bash
-# install the nvm installer
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-# nvm install 
-nvm install lts/dubnium
-nvm alias default lts/dubnium
-# install AWS CDK
-npm i -g aws-cdk
-# check cdk version, make sure your version >=1.0.0
-cdk --version
-# install other required npm modules
-npm install
-# build the index.ts to index.js with tsc
-npm run build
-# cdk bootstrapping
-cdk bootstrap
-```
-
-### Generate your project assets
-
-```bash
-npx projen
-```
-
-### Install npm modules
-
-```bash
-yarn install
-```
-
-### Deploy
-
-```bash
-cdk synth
-# deploy to a specific region
-cdk deploy -c region=ap-northeast-1 
+new FargateFastAutoscaler(stack, 'FargateFastAutoscaler', {
+  vpc,
+  // create the backend PHP service
+  backendContainer: {
+    image: ContainerImage.fromAsset(path.join(__dirname, '../../sample/backend/php')),
+    cpu: 0,
+    logging: new AwsLogDriver({
+      streamPrefix: 'echo-http-req',
+    }),
+  },
+  // PHP service running on container port 2015
+  backendContainerPortMapping: [
+    { containerPort: 2015 },
+  ],
+})
 ```
 
 On deployment complete, you'll see the URL in the Outputs:
@@ -78,7 +71,6 @@ On deployment complete, you'll see the URL in the Outputs:
 Open this URL and you will see the Caddy web server welcome page with phpinfo.
 
 ![](images/php-welcome.png)
-
 
 
 And if you append `/nginx_status` in the URL and reload the page, you'll see this page:
@@ -93,26 +85,14 @@ Go to Step Function console and click **start execution** on the state machines.
 
 # SNS Service Integration
 
-The **SNSScaleOut** task in the state machine leverages direct Amazon SNS service integration to publish a notification to your SNS topic. Just update DefaultSNSTopicArn in index.ts with your own SNS topic ARN and you will receive SNS notification everytime it starts **ServiceScaleOut** task.
+The **SNSScaleOut** task in the state machine leverages direct Amazon SNS service integration to publish a notification to your SNS topic. You will receive SNS notification when it starts **ServiceScaleOut** task.
 
-If you have built your [sns2telegram](https://github.com/pahud/sns2telegram) service, you will be able to receive the SNS message in your Telegram client.
-
+Specify the `snsTopic` property to define your custom SNS topic. If not defined, the construct will create a default SNS topic.
 
 
 # Disable Scale In
 
-By default, the lambda function will have **disable_scalein=yes** as the environment variable. This will protect your workload from being scaled in accidentally. If you prefer to enable scale in, just remove this environment variable.
-
-
-
-# Clean Up
-
-Simply **cdk destroy** to delete all resources in the stack
-
-```bash
-# destroy the stack
-cdk destroy 
-```
+By default, `disableScaleIn` is set to true to prevent your workload from scale-in. If you prefer to enable scale in, set `disableScaleIn` to `false`.
 
 
 ## License Summary
