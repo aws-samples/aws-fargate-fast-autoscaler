@@ -51,9 +51,7 @@ new FargateFastAutoscaler(stack, 'FargateFastAutoscaler', {
     image: ContainerImage.fromAsset(path.join(__dirname, '../../sample/backend/php')),
   },
   // PHP service running on container port 2015
-  backendContainerPortMapping: [
-    { containerPort: 2015 },
-  ],
+  backendContainerPortMapping: [ { containerPort: 2015 } ],
 })
 ```
 
