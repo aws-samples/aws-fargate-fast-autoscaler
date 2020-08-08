@@ -39,6 +39,7 @@ new FargateFastAutoscaler(scope: Construct, id: string, props: FargateFastAutosc
   * **vpc** (<code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code>)  The VPC for the stack. 
   * **awsCliLayerArn** (<code>string</code>)  AWS CLI Lambda layer ARN in Serverless App Repository. __*Default*__: 'arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-awscli'
   * **awsCliLayerVersion** (<code>string</code>)  The version of the Serverless App for AWS CLI Lambda layer. __*Default*__: AWSCLI_LAYER_VERSION
+  * **disableScaleIn** (<code>boolean</code>)  disable scale in. __*Default*__: true
   * **initialTaskNumber** (<code>number</code>)  initial number of tasks for the service. __*Default*__: 2
   * **snsTopic** (<code>[ITopic](#aws-cdk-aws-sns-itopic)</code>)  SNS Topic to publish the notification. __*Default*__: do not publish to SNS
 
@@ -72,6 +73,7 @@ Name | Type | Description
 **vpc**🔹 | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | The VPC for the stack.
 **awsCliLayerArn**?🔹 | <code>string</code> | AWS CLI Lambda layer ARN in Serverless App Repository.<br/>__*Default*__: 'arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-awscli'
 **awsCliLayerVersion**?🔹 | <code>string</code> | The version of the Serverless App for AWS CLI Lambda layer.<br/>__*Default*__: AWSCLI_LAYER_VERSION
+**disableScaleIn**?🔹 | <code>boolean</code> | disable scale in.<br/>__*Default*__: true
 **initialTaskNumber**?🔹 | <code>number</code> | initial number of tasks for the service.<br/>__*Default*__: 2
 **snsTopic**?🔹 | <code>[ITopic](#aws-cdk-aws-sns-itopic)</code> | SNS Topic to publish the notification.<br/>__*Default*__: do not publish to SNS
 
