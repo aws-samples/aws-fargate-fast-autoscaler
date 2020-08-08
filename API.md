@@ -4,18 +4,18 @@
 
 Name|Description
 ----|-----------
-[FargateFastAutoscaler](#cdk-fargate-fastautlscaler-fargatefastautoscaler)|*No description*
+[FargateFastAutoscaler](#cdk-fargate-fastautoscaler-fargatefastautoscaler)|*No description*
 
 
 **Structs**
 
 Name|Description
 ----|-----------
-[FargateFastAutoscalerProps](#cdk-fargate-fastautlscaler-fargatefastautoscalerprops)|*No description*
+[FargateFastAutoscalerProps](#cdk-fargate-fastautoscaler-fargatefastautoscalerprops)|*No description*
 
 
 
-## class FargateFastAutoscaler 🔹 <a id="cdk-fargate-fastautlscaler-fargatefastautoscaler"></a>
+## class FargateFastAutoscaler 🔹 <a id="cdk-fargate-fastautoscaler-fargatefastautoscaler"></a>
 
 
 
@@ -33,7 +33,7 @@ new FargateFastAutoscaler(scope: Construct, id: string, props: FargateFastAutosc
 
 * **scope** (<code>[Construct](#aws-cdk-core-construct)</code>)  *No description*
 * **id** (<code>string</code>)  *No description*
-* **props** (<code>[FargateFastAutoscalerProps](#cdk-fargate-fastautlscaler-fargatefastautoscalerprops)</code>)  *No description*
+* **props** (<code>[FargateFastAutoscalerProps](#cdk-fargate-fastautoscaler-fargatefastautoscalerprops)</code>)  *No description*
   * **backendContainer** (<code>[ContainerDefinitionOptions](#aws-cdk-aws-ecs-containerdefinitionoptions)</code>)  backend container. 
   * **backendContainerPortMapping** (<code>Array<[PortMapping](#aws-cdk-aws-ecs-portmapping)></code>)  container port for the backend container. 
   * **vpc** (<code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code>)  The VPC for the stack. 
@@ -59,7 +59,7 @@ Name | Type | Description
 
 
 
-## struct FargateFastAutoscalerProps 🔹 <a id="cdk-fargate-fastautlscaler-fargatefastautoscalerprops"></a>
+## struct FargateFastAutoscalerProps 🔹 <a id="cdk-fargate-fastautoscaler-fargatefastautoscalerprops"></a>
 
 
 
