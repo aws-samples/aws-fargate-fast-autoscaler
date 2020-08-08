@@ -33,7 +33,7 @@ The following CDK sample creates a PHP service in AWS Fargate with the nginx as 
 import * as cdk from '@aws-cdk/core'
 import * as ec2 from '@aws-cdk/aws-ec2';
 import { AwsLogDriver, ContainerImage } from '@aws-cdk/aws-ecs';
-import { FargateFastAutoscaler } from '../autoscaler';
+import { FargateFastAutoscaler } from 'cdk-fargate-fastautlscaler';
 import * as path from 'path';
 
 const app = new cdk.App()
