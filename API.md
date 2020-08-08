@@ -38,7 +38,7 @@ new FargateFastAutoscaler(scope: Construct, id: string, props: FargateFastAutosc
   * **backendContainerPortMapping** (<code>Array<[PortMapping](#aws-cdk-aws-ecs-portmapping)></code>)  container port for the backend container. 
   * **vpc** (<code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code>)  The VPC for the stack. 
   * **awsCliLayerArn** (<code>string</code>)  AWS CLI Lambda layer ARN in Serverless App Repository. __*Default*__: 'arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-awscli'
-  * **awsCliLayerVersion** (<code>string</code>)  The version of the Serverless App for AWS CLI Lambda layer. __*Default*__: '1.16.232'
+  * **awsCliLayerVersion** (<code>string</code>)  The version of the Serverless App for AWS CLI Lambda layer. __*Default*__: AWSCLI_LAYER_VERSION
   * **initialTaskNumber** (<code>number</code>)  initial number of tasks for the service. __*Default*__: 2
   * **snsTopic** (<code>[ITopic](#aws-cdk-aws-sns-itopic)</code>)  SNS Topic to publish the notification. __*Default*__: do not publish to SNS
 
@@ -71,7 +71,7 @@ Name | Type | Description
 **backendContainerPortMapping**🔹 | <code>Array<[PortMapping](#aws-cdk-aws-ecs-portmapping)></code> | container port for the backend container.
 **vpc**🔹 | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | The VPC for the stack.
 **awsCliLayerArn**?🔹 | <code>string</code> | AWS CLI Lambda layer ARN in Serverless App Repository.<br/>__*Default*__: 'arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-awscli'
-**awsCliLayerVersion**?🔹 | <code>string</code> | The version of the Serverless App for AWS CLI Lambda layer.<br/>__*Default*__: '1.16.232'
+**awsCliLayerVersion**?🔹 | <code>string</code> | The version of the Serverless App for AWS CLI Lambda layer.<br/>__*Default*__: AWSCLI_LAYER_VERSION
 **initialTaskNumber**?🔹 | <code>number</code> | initial number of tasks for the service.<br/>__*Default*__: 2
 **snsTopic**?🔹 | <code>[ITopic](#aws-cdk-aws-sns-itopic)</code> | SNS Topic to publish the notification.<br/>__*Default*__: do not publish to SNS
 
