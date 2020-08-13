@@ -3,7 +3,7 @@ const {
   Semver
 } = require('projen');
 
-const AWS_CDK_LATEST_RELEASE = '1.57.0';
+const AWS_CDK_LATEST_RELEASE = '1.58.0';
 const CONSTRUCTS_VERSION = '3.0.4'
 const PROJECT_NAME = 'cdk-fargate-fastautoscaler';
 const PROJECT_DESCRIPTION = 'A JSII construct lib to build AWS Fargate Fast Autoscaler';
