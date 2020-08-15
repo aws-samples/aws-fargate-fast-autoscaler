@@ -3,8 +3,8 @@ const {
   Semver
 } = require('projen');
 
-const AWS_CDK_LATEST_RELEASE = '1.58.0';
-const CONSTRUCTS_VERSION = '3.0.4'
+const AWS_CDK_LATEST_RELEASE = '1.59.0';
+const CONSTRUCTS_VERSION = '3.0.4';
 const PROJECT_NAME = 'cdk-fargate-fastautoscaler';
 const PROJECT_DESCRIPTION = 'A JSII construct lib to build AWS Fargate Fast Autoscaler';
 
@@ -25,28 +25,28 @@ const project = new JsiiProject({
     'dot-prop': Semver.caret('5.1.1'),
   },
   peerDependencies: {
-    constructs: Semver.caret(CONSTRUCTS_VERSION),
-    '@aws-cdk/core': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-ec2': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-ecs': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-elasticloadbalancingv2': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-iam': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-lambda': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-sns': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-stepfunctions': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-stepfunctions-tasks': Semver.caret(AWS_CDK_LATEST_RELEASE),
+    constructs: Semver.pinned(CONSTRUCTS_VERSION),
+    '@aws-cdk/core': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-ec2': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-ecs': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-elasticloadbalancingv2': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-iam': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-lambda': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-sns': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-stepfunctions': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-stepfunctions-tasks': Semver.pinned(AWS_CDK_LATEST_RELEASE),
   },
   dependencies: {
-    constructs: Semver.caret(CONSTRUCTS_VERSION),
-    '@aws-cdk/core': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-ec2': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-ecs': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-elasticloadbalancingv2': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-iam': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-lambda': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-sns': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-stepfunctions': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-stepfunctions-tasks': Semver.caret(AWS_CDK_LATEST_RELEASE),
+    constructs: Semver.pinned(CONSTRUCTS_VERSION),
+    '@aws-cdk/core': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-ec2': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-ecs': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-elasticloadbalancingv2': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-iam': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-lambda': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-sns': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-stepfunctions': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-stepfunctions-tasks': Semver.pinned(AWS_CDK_LATEST_RELEASE),
   },
   python: {
     distName: 'cdk-fargate-fastautoscaler',
@@ -70,7 +70,7 @@ project.addFields({
 });
 
 
-const common_exclude = ['cdk.out', 'cdk.context.json', 'docker-compose.yml', 'images', 'yarn-error.log']
+const common_exclude = ['cdk.out', 'cdk.context.json', 'docker-compose.yml', 'images', 'yarn-error.log'];
 project.npmignore.exclude(...common_exclude);
 project.gitignore.exclude(...common_exclude);
 
