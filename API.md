@@ -15,7 +15,7 @@ Name|Description
 
 
 
-## class FargateFastAutoscaler 🔹 <a id="cdk-fargate-fastautoscaler-fargatefastautoscaler"></a>
+## class FargateFastAutoscaler  <a id="cdk-fargate-fastautoscaler-fargatefastautoscaler"></a>
 
 
 
@@ -50,16 +50,16 @@ new FargateFastAutoscaler(scope: Construct, id: string, props: FargateFastAutosc
 
 Name | Type | Description 
 -----|------|-------------
-**fargateService**🔹 | <code>[FargateService](#aws-cdk-aws-ecs-fargateservice)</code> | <span></span>
-**fargateTaskDef**🔹 | <code>[FargateTaskDefinition](#aws-cdk-aws-ecs-fargatetaskdefinition)</code> | <span></span>
-**fargateWatcherFuncArn**🔹 | <code>string</code> | <span></span>
-**layerVersionArn**🔹 | <code>string</code> | <span></span>
-**region**🔹 | <code>string</code> | <span></span>
-**vpc**🔹 | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | <span></span>
+**fargateService** | <code>[FargateService](#aws-cdk-aws-ecs-fargateservice)</code> | <span></span>
+**fargateTaskDef** | <code>[FargateTaskDefinition](#aws-cdk-aws-ecs-fargatetaskdefinition)</code> | <span></span>
+**fargateWatcherFuncArn** | <code>string</code> | <span></span>
+**layerVersionArn** | <code>string</code> | <span></span>
+**region** | <code>string</code> | <span></span>
+**vpc** | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | <span></span>
 
 
 
-## struct FargateFastAutoscalerProps 🔹 <a id="cdk-fargate-fastautoscaler-fargatefastautoscalerprops"></a>
+## struct FargateFastAutoscalerProps  <a id="cdk-fargate-fastautoscaler-fargatefastautoscalerprops"></a>
 
 
 
@@ -68,14 +68,14 @@ Name | Type | Description
 
 Name | Type | Description 
 -----|------|-------------
-**backendContainer**🔹 | <code>[ContainerDefinitionOptions](#aws-cdk-aws-ecs-containerdefinitionoptions)</code> | backend container.
-**backendContainerPortMapping**🔹 | <code>Array<[PortMapping](#aws-cdk-aws-ecs-portmapping)></code> | container port for the backend container.
-**vpc**🔹 | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | The VPC for the stack.
-**awsCliLayerArn**?🔹 | <code>string</code> | AWS CLI Lambda layer ARN in Serverless App Repository.<br/>__*Default*__: 'arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-awscli'
-**awsCliLayerVersion**?🔹 | <code>string</code> | The version of the Serverless App for AWS CLI Lambda layer.<br/>__*Default*__: AWSCLI_LAYER_VERSION
-**disableScaleIn**?🔹 | <code>boolean</code> | disable scale in.<br/>__*Default*__: true
-**initialTaskNumber**?🔹 | <code>number</code> | initial number of tasks for the service.<br/>__*Default*__: 2
-**snsTopic**?🔹 | <code>[ITopic](#aws-cdk-aws-sns-itopic)</code> | SNS Topic to publish the notification.<br/>__*Default*__: do not publish to SNS
+**backendContainer** | <code>[ContainerDefinitionOptions](#aws-cdk-aws-ecs-containerdefinitionoptions)</code> | backend container.
+**backendContainerPortMapping** | <code>Array<[PortMapping](#aws-cdk-aws-ecs-portmapping)></code> | container port for the backend container.
+**vpc** | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | The VPC for the stack.
+**awsCliLayerArn**? | <code>string</code> | AWS CLI Lambda layer ARN in Serverless App Repository.<br/>__*Default*__: 'arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-awscli'
+**awsCliLayerVersion**? | <code>string</code> | The version of the Serverless App for AWS CLI Lambda layer.<br/>__*Default*__: AWSCLI_LAYER_VERSION
+**disableScaleIn**? | <code>boolean</code> | disable scale in.<br/>__*Default*__: true
+**initialTaskNumber**? | <code>number</code> | initial number of tasks for the service.<br/>__*Default*__: 2
+**snsTopic**? | <code>[ITopic](#aws-cdk-aws-sns-itopic)</code> | SNS Topic to publish the notification.<br/>__*Default*__: do not publish to SNS
 
 
 

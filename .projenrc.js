@@ -1,77 +1,62 @@
 const {
-  JsiiProject,
-  Semver
+  ConstructLibraryAws,
 } = require('projen');
 
-const AWS_CDK_LATEST_RELEASE = '1.60.0';
-const CONSTRUCTS_VERSION = '3.0.4';
+const AWS_CDK_LATEST_RELEASE = '1.61.0';
 const PROJECT_NAME = 'cdk-fargate-fastautoscaler';
 const PROJECT_DESCRIPTION = 'A JSII construct lib to build AWS Fargate Fast Autoscaler';
+const PROJECT_REPOSITORY = 'https://github.com/pahud/cdk-spot-one.git'
 
-const project = new JsiiProject({
-  name: PROJECT_NAME,
-  jsiiVersion: Semver.caret('1.5.0'),
-  description: PROJECT_DESCRIPTION,
-  repository: 'https://github.com/aws-samples/aws-fargate-fast-autoscaler.git',
-  authorName: 'Pahud Hsieh',
-  authorEmail: 'hunhsieh@amazon.com',
-  stability: 'experimental',
-  devDependencies: {
-    '@aws-cdk/assert': Semver.caret(AWS_CDK_LATEST_RELEASE),
-    '@types/jest': Semver.caret('25.2.3'),
-    '@types/node': Semver.caret('14.0.11'),
-    'ts-jest': Semver.caret('25.3.1'),
-    'jest': Semver.caret('25.5.0'),
-    'dot-prop': Semver.caret('5.1.1'),
+const project = new ConstructLibraryAws({
+  "authorName": "Pahud Hsieh",
+  "authorEmail": "pahudnet@gmail.com",
+  "name": PROJECT_NAME,
+  "description": PROJECT_DESCRIPTION,
+  "repository": PROJECT_REPOSITORY,
+
+  keywords: [
+    'aws',
+    'fargate',
+    'autoscaler',
+  ],
+
+  catalog: {
+    twitter: 'pahudnet',
+    announce: false,
   },
-  peerDependencies: {
-    constructs: Semver.pinned(CONSTRUCTS_VERSION),
-    '@aws-cdk/core': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-ec2': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-ecs': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-elasticloadbalancingv2': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-iam': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-lambda': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-sns': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-stepfunctions': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-stepfunctions-tasks': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-  },
-  dependencies: {
-    constructs: Semver.pinned(CONSTRUCTS_VERSION),
-    '@aws-cdk/core': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-ec2': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-ecs': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-elasticloadbalancingv2': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-iam': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-lambda': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-sns': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-stepfunctions': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-stepfunctions-tasks': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-  },
+
+  // creates PRs for projen upgrades
+  projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
+
+  cdkVersion: AWS_CDK_LATEST_RELEASE,
+  cdkDependencies: [
+    '@aws-cdk/core',
+    '@aws-cdk/aws-ec2',
+    '@aws-cdk/aws-ecs',
+    '@aws-cdk/aws-elasticloadbalancingv2',
+    '@aws-cdk/aws-iam',
+    '@aws-cdk/aws-lambda',
+    '@aws-cdk/aws-sns',
+    '@aws-cdk/aws-stepfunctions',
+    '@aws-cdk/aws-stepfunctions-tasks',
+  ],
+
   python: {
     distName: 'cdk-fargate-fastautoscaler',
     module: 'cdk_fargate_fastautoscaler'
   }
 });
 
-project.addFields({
-  'keywords': [
-    'aws',
-    'fargate',
-    'autoscaler',
-  ]
-});
+project.gitignore.exclude(
+  'cdk.context.json',
+  'cdk.out'
+);
 
-project.addFields({
-  'awscdkio': {
-    'twitter': '@pahudnet',
-    'announce': false,
-  }
-});
-
-
-const common_exclude = ['cdk.out', 'cdk.context.json', 'docker-compose.yml', 'images', 'yarn-error.log'];
-project.npmignore.exclude(...common_exclude);
-project.gitignore.exclude(...common_exclude);
+project.npmignore.exclude(
+  'cdk.context.json',
+  'cdk.out',
+  'coverage',
+  'yarn-error.log'
+);
 
 project.synth();

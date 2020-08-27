@@ -5,18 +5,19 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aws-samples/aws-fargate-fast-autoscaler.git"
+    "url": "https://github.com/pahud/cdk-spot-one.git"
   },
   "bin": {},
   "scripts": {
-    "projen": "node .projenrc.js && yarn install",
+    "start": "node ../../.npm/_npx/84340/lib/node_modules/projen/lib/start-app.js",
+    "projen": "node .projenrc.js && yarn -s install",
     "no-changes": "(git log --oneline -1 | grep -q \"chore(release):\") && echo \"No changes to release.\"",
     "bump": "yarn --silent no-changes || standard-version",
     "release": "yarn --silent no-changes || (yarn bump && git push --follow-tags origin master)",
     "projen:upgrade": "chmod +w package.json && yarn upgrade -L projen && chmod -w package.json && yarn projen",
-    "compile": "jsii --silence-warnings=reserved-word && jsii-docgen",
-    "watch": "jsii -w --silence-warnings=reserved-word",
     "package": "jsii-pacmak",
+    "compile": "jsii --silence-warnings=reserved-word --no-fix-peer-dependencies && jsii-docgen",
+    "watch": "jsii -w --silence-warnings=reserved-word --no-fix-peer-dependencies",
     "build": "yarn test && yarn compile && yarn run package",
     "eslint": "eslint . --ext .ts",
     "test": "yarn eslint && rm -fr lib/ && jest --passWithNoTests --updateSnapshot",
@@ -27,76 +28,119 @@
   },
   "author": {
     "name": "Pahud Hsieh",
-    "email": "hunhsieh@amazon.com",
+    "email": "pahudnet@gmail.com",
     "organization": false
   },
   "devDependencies": {
-    "constructs": "3.0.4",
-    "@aws-cdk/core": "1.60.0",
-    "@aws-cdk/aws-ec2": "1.60.0",
-    "@aws-cdk/aws-ecs": "1.60.0",
-    "@aws-cdk/aws-elasticloadbalancingv2": "1.60.0",
-    "@aws-cdk/aws-iam": "1.60.0",
-    "@aws-cdk/aws-lambda": "1.60.0",
-    "@aws-cdk/aws-sns": "1.60.0",
-    "@aws-cdk/aws-stepfunctions": "1.60.0",
-    "@aws-cdk/aws-stepfunctions-tasks": "1.60.0",
-    "@aws-cdk/assert": "^1.60.0",
+    "@aws-cdk/assert": "^1.61.0",
     "@types/jest": "^26.0.7",
     "@types/node": "^10.17.0",
-    "ts-jest": "^26.1.0",
-    "jest": "^26.0.1",
-    "dot-prop": "^5.1.1",
-    "projen": "^0.3.34",
-    "standard-version": "^8.0.1",
-    "typescript": "^3.9.5",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.19.2",
     "eslint": "^6.8.0",
     "eslint-import-resolver-node": "^0.3.3",
     "eslint-import-resolver-typescript": "^2.0.0",
     "eslint-plugin-import": "^2.20.2",
-    "json-schema": "^0.2.5",
-    "jsii": "^1.5.0",
-    "jsii-diff": "^1.5.0",
-    "jsii-pacmak": "^1.5.0",
+    "jest": "^26.4.2",
+    "jsii": "^1.11.0",
+    "jsii-diff": "^1.11.0",
+    "jsii-docgen": "^1.3.2",
+    "jsii-pacmak": "^1.11.0",
     "jsii-release": "^0.1.6",
-    "jsii-docgen": "^1.3.2"
+    "json-schema": "^0.2.5",
+    "projen": "^0.3.48",
+    "standard-version": "^9.0.0",
+    "ts-jest": "^26.1.0",
+    "typescript": "^3.9.5"
   },
   "peerDependencies": {
-    "constructs": "3.0.4",
-    "@aws-cdk/core": "1.60.0",
-    "@aws-cdk/aws-ec2": "1.60.0",
-    "@aws-cdk/aws-ecs": "1.60.0",
-    "@aws-cdk/aws-elasticloadbalancingv2": "1.60.0",
-    "@aws-cdk/aws-iam": "1.60.0",
-    "@aws-cdk/aws-lambda": "1.60.0",
-    "@aws-cdk/aws-sns": "1.60.0",
-    "@aws-cdk/aws-stepfunctions": "1.60.0",
-    "@aws-cdk/aws-stepfunctions-tasks": "1.60.0"
+    "@aws-cdk/aws-ec2": "^1.61.0",
+    "@aws-cdk/aws-ecs": "^1.61.0",
+    "@aws-cdk/aws-elasticloadbalancingv2": "^1.61.0",
+    "@aws-cdk/aws-iam": "^1.61.0",
+    "@aws-cdk/aws-lambda": "^1.61.0",
+    "@aws-cdk/aws-sns": "^1.61.0",
+    "@aws-cdk/aws-stepfunctions": "^1.61.0",
+    "@aws-cdk/aws-stepfunctions-tasks": "^1.61.0",
+    "@aws-cdk/core": "^1.61.0",
+    "constructs": "^3.0.4"
   },
   "dependencies": {
-    "constructs": "3.0.4",
-    "@aws-cdk/core": "1.60.0",
-    "@aws-cdk/aws-ec2": "1.60.0",
-    "@aws-cdk/aws-ecs": "1.60.0",
-    "@aws-cdk/aws-elasticloadbalancingv2": "1.60.0",
-    "@aws-cdk/aws-iam": "1.60.0",
-    "@aws-cdk/aws-lambda": "1.60.0",
-    "@aws-cdk/aws-sns": "1.60.0",
-    "@aws-cdk/aws-stepfunctions": "1.60.0",
-    "@aws-cdk/aws-stepfunctions-tasks": "1.60.0"
+    "@aws-cdk/aws-ec2": "^1.61.0",
+    "@aws-cdk/aws-ecs": "^1.61.0",
+    "@aws-cdk/aws-elasticloadbalancingv2": "^1.61.0",
+    "@aws-cdk/aws-iam": "^1.61.0",
+    "@aws-cdk/aws-lambda": "^1.61.0",
+    "@aws-cdk/aws-sns": "^1.61.0",
+    "@aws-cdk/aws-stepfunctions": "^1.61.0",
+    "@aws-cdk/aws-stepfunctions-tasks": "^1.61.0",
+    "@aws-cdk/core": "^1.61.0"
   },
   "bundledDependencies": [],
   "keywords": [
+    "autoscaler",
     "aws",
-    "fargate",
-    "autoscaler"
+    "cdk",
+    "fargate"
   ],
   "engines": {
     "node": ">= 10.17.0"
   },
   "license": "Apache-2.0",
+  "start": {
+    "projen": {
+      "descrtiption": "Synthesize project configuration from .projenrc.js",
+      "category": 3
+    },
+    "bump": {
+      "descrtiption": "Commits a bump to the package version based on conventional commits",
+      "category": 2
+    },
+    "release": {
+      "descrtiption": "Bumps version & push to master",
+      "category": 2
+    },
+    "projen:upgrade": {
+      "descrtiption": "upgrades projen to the latest version",
+      "category": 3
+    },
+    "package": {
+      "descrtiption": "Create an npm tarball",
+      "category": 2
+    },
+    "compile": {
+      "descrtiption": "Only compile",
+      "category": 0
+    },
+    "watch": {
+      "descrtiption": "Watch & compile in the background",
+      "category": 0
+    },
+    "build": {
+      "descrtiption": "Full release build",
+      "category": 0
+    },
+    "eslint": {
+      "descrtiption": "Runs eslint against the codebase",
+      "category": 1
+    },
+    "test": {
+      "descrtiption": "Run tests",
+      "category": 1
+    },
+    "test:watch": {
+      "descrtiption": "Run jest in watch mode",
+      "category": 1
+    },
+    "compat": {
+      "descrtiption": "Perform API compatibility check against latest version",
+      "category": 2
+    },
+    "docgen": {
+      "descrtiption": "Generate API.md from .jsii manifest",
+      "category": 2
+    }
+  },
   "version": "0.2.7",
   "types": "lib/index.d.ts",
   "jest": {
@@ -119,7 +163,7 @@
       }
     }
   },
-  "stability": "experimental",
+  "stability": "stable",
   "jsii": {
     "outdir": "dist",
     "targets": {
@@ -134,7 +178,7 @@
     }
   },
   "awscdkio": {
-    "twitter": "@pahudnet",
+    "twitter": "pahudnet",
     "announce": false
   }
 }
