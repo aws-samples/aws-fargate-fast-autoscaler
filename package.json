@@ -9,7 +9,7 @@
   },
   "bin": {},
   "scripts": {
-    "start": "node ../../.npm/_npx/88201/lib/node_modules/projen/lib/start-app.js",
+    "start": "node node_modules/projen/lib/start-app.js",
     "projen": "node .projenrc.js && yarn -s install",
     "no-changes": "(git log --oneline -1 | grep -q \"chore(release):\") && echo \"No changes to release.\"",
     "bump": "yarn --silent no-changes || standard-version",
@@ -141,7 +141,7 @@
       "category": 2
     }
   },
-  "version": "0.2.11",
+  "version": "0.2.12",
   "types": "lib/index.d.ts",
   "jest": {
     "clearMocks": true,
