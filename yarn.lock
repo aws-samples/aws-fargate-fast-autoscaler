@@ -3261,7 +3261,7 @@ ini@^1.3.2:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
   integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
 
-inquirer@^7.0.0, inquirer@^7.3.3:
+inquirer@^7.0.0:
   version "7.3.3"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-7.3.3.tgz#04d176b2af04afc157a83fd7c100e98ee0aad003"
   integrity sha512-JG3eIAj5V9CwcGvuOmoo6LB9kbAYT8HXffUl6memuszlwDC/qvFAJw49XJ5NROSFNPxp3iQg1GqkFhaY/CR0IA==
@@ -5101,15 +5101,14 @@ progress@^2.0.0:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.3.48:
-  version "0.3.48"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.3.48.tgz#618360312ce677aaaea0994a82a9e31b8e26c36a"
-  integrity sha512-RDfAAmONlAva6LY98uT2Tm0pvUN6sP4vf8tKmUX4wEGJQFMGvFR/cPWqouPE7kqDnFg8kwTrdvhAqnMRVZBODQ==
+projen@0.3.47:
+  version "0.3.47"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.3.47.tgz#f39701152a5442f9e666b9ab40f58b23db995fd3"
+  integrity sha512-PbX+h4uahffwO78OSI+1Ubo/lKLkbShkemjxkfBFVy6cN3jMyrjRqbtRwJ15ovhp5Zfbsmwr2sDx5Ytv/8kj0A==
   dependencies:
     decamelize "^4.0.0"
     fs-extra "^9.0.1"
     glob "^7.1.6"
-    inquirer "^7.3.3"
     yaml "^1.10.0"
     yargs "^15.4.1"
 

@@ -40,8 +40,11 @@ jspm_packages/
 /coverage
 .jsii
 tsconfig.json
-cdk.context.json
 cdk.out
+cdk.context.json
+docker-compose.yml
+images
+yarn-error.log
 !/package.json
 !/.npmignore
 !/LICENSE

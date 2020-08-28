@@ -12,10 +12,12 @@ dist
 /tsconfig.jest.json
 /coverage
 /test
-cdk.context.json
 cdk.out
-coverage
+cdk.context.json
+docker-compose.yml
+images
 yarn-error.log
+/codebase
 !/lib
 !/lib/**/*.js
 !/lib/**/*.d.ts
