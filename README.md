@@ -1,4 +1,4 @@
-
+[![awscdk-jsii-template](https://img.shields.io/badge/built%20with-awscdk--jsii--template-blue)](https://github.com/pahud/awscdk-jsii-template)
 [![NPM version](https://badge.fury.io/js/cdk-fargate-fastautoscaler.svg)](https://badge.fury.io/js/cdk-fargate-fastautoscaler)
 [![PyPI version](https://badge.fury.io/py/cdk-fargate-fastautoscaler.svg)](https://badge.fury.io/py/cdk-fargate-fastautoscaler)
 ![Release](https://github.com/aws-samples/aws-fargate-fast-autoscaler/workflows/Release/badge.svg)
