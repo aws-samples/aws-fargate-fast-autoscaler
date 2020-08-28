@@ -2,7 +2,7 @@ const {
   ConstructLibraryAws,
 } = require('projen');
 
-const AWS_CDK_LATEST_RELEASE = '1.61.0';
+const AWS_CDK_LATEST_RELEASE = '1.61.1';
 const PROJECT_NAME = 'cdk-fargate-fastautoscaler';
 const PROJECT_DESCRIPTION = 'A JSII construct lib to build AWS Fargate Fast Autoscaler';
 const PROJECT_REPOSITORY = 'https://github.com/pahud/cdk-spot-one.git'
