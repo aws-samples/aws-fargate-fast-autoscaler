@@ -2,11 +2,10 @@ const {
   ConstructLibraryAws,
 } = require('projen');
 
-const AWS_CDK_LATEST_RELEASE = process.env.AWS_CDK_LATEST_RELEASE || '1.61.0';
-const PROJEN_PINNED_VERSION = '0.3.50';
+const AWS_CDK_LATEST_RELEASE = '1.62.0';
 const PROJECT_NAME = 'cdk-fargate-fastautoscaler';
 const PROJECT_DESCRIPTION = 'A JSII construct lib to build AWS Fargate Fast Autoscaler';
-const PROJECT_REPOSITORY = 'https://github.com/pahud/cdk-spot-one.git'
+const PROJECT_REPOSITORY = 'https://github.com/aws-samples/aws-fargate-fast-autoscaler.git';
 
 const project = new ConstructLibraryAws({
   "authorName": "Pahud Hsieh",
@@ -47,11 +46,6 @@ const project = new ConstructLibraryAws({
     module: 'cdk_fargate_fastautoscaler'
   }
 });
-
-
-if (PROJEN_PINNED_VERSION) {
-  project.devDependencies.projen = PROJEN_PINNED_VERSION;
-}
 
 const common_exclude = ['cdk.out', 'cdk.context.json', 'docker-compose.yml', 'images', 'yarn-error.log'];
 project.npmignore.exclude(...common_exclude, '/codebase');
