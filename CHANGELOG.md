@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.22](https://github.com/aws-samples/aws-fargate-fast-autoscaler/compare/v0.2.20...v0.2.22) (2020-09-06)
+
 ### 0.2.21 (2020-09-01)
 
 ### [0.2.20](https://github.com/pahud/cdk-spot-one/compare/v0.2.19...v0.2.20) (2020-09-01)
