@@ -1,0 +1,1170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`integ snapshot validation 1`] = `
+Object {
+  "Outputs": Object {
+    "FargateFastAutoscalerClusterARNE081258D": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "FargateFastAutoscalerfgCluster193B9F00",
+          "Arn",
+        ],
+      },
+    },
+    "FargateFastAutoscalerFargateWatcherLambdaArn63237843": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "FargateFastAutoscalerfargateWatcherFuncABFB8D87",
+          "Arn",
+        ],
+      },
+    },
+    "FargateFastAutoscalerURLEEBC7E0B": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "http://",
+            Object {
+              "Fn::GetAtt": Array [
+                "FargateFastAutoscalerexternalDE044CB6",
+                "DNSName",
+              ],
+            },
+          ],
+        ],
+      },
+    },
+  },
+  "Parameters": Object {
+    "AssetParameterscc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508ArtifactHash7884D74D": Object {
+      "Description": "Artifact hash for asset \\"cc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508\\"",
+      "Type": "String",
+    },
+    "AssetParameterscc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508S3Bucket7C1537BB": Object {
+      "Description": "S3 bucket for asset \\"cc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508\\"",
+      "Type": "String",
+    },
+    "AssetParameterscc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508S3VersionKey70117FBC": Object {
+      "Description": "S3 key for asset version \\"cc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508\\"",
+      "Type": "String",
+    },
+  },
+  "Resources": Object {
+    "FargateFastAutoscaler8751528E": Object {
+      "DependsOn": Array [
+        "FargateFastAutoscalerRoleDefaultPolicy92967F71",
+        "FargateFastAutoscalerRole8A06D378",
+      ],
+      "Properties": Object {
+        "DefinitionString": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"StartAt\\":\\"GetECSTasks\\",\\"States\\":{\\"GetECSTasks\\":{\\"Next\\":\\"IsServiceOverloaded\\",\\"Type\\":\\"Task\\",\\"Resource\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "FargateFastAutoscalerfargateWatcherFuncABFB8D87",
+                  "Arn",
+                ],
+              },
+              "\\",\\"ResultPath\\":\\"$.status\\"},\\"Wait 60 Seconds\\":{\\"Type\\":\\"Wait\\",\\"Seconds\\":60,\\"Next\\":\\"GetECSTasks\\"},\\"ServiceScaleOut\\":{\\"Next\\":\\"Wait 60 Seconds\\",\\"Type\\":\\"Task\\",\\"Resource\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "FargateFastAutoscalerfargateWatcherFuncABFB8D87",
+                  "Arn",
+                ],
+              },
+              "\\"},\\"SNSScaleOut\\":{\\"Next\\":\\"ServiceScaleOut\\",\\"Parameters\\":{\\"TopicArn\\":\\"",
+              Object {
+                "Ref": "FargateFastAutoscalerFargateFastAutoscalertopic289CC33D",
+              },
+              "\\",\\"Message\\":{\\"Input.$\\":\\"$\\"},\\"Subject\\":\\"Fargate Start Scaling Out\\"},\\"Type\\":\\"Task\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::sns:publish\\",\\"ResultPath\\":\\"$.taskresult\\"},\\"Desire20\\":{\\"Type\\":\\"Pass\\",\\"Result\\":{\\"Desired\\":20},\\"OutputPath\\":\\"$\\",\\"Next\\":\\"SNSScaleOut\\"},\\"IsServiceOverloaded\\":{\\"Type\\":\\"Choice\\",\\"InputPath\\":\\"$.status\\",\\"Choices\\":[{\\"Variable\\":\\"$.avg\\",\\"NumericGreaterThanEquals\\":500,\\"Next\\":\\"Desire20\\"},{\\"Variable\\":\\"$.avg\\",\\"NumericGreaterThanEquals\\":300,\\"Next\\":\\"Desire15\\"},{\\"Variable\\":\\"$.avg\\",\\"NumericGreaterThanEquals\\":100,\\"Next\\":\\"Desire10\\"},{\\"Variable\\":\\"$.avg\\",\\"NumericGreaterThanEquals\\":50,\\"Next\\":\\"Desire2\\"},{\\"Variable\\":\\"$.avg\\",\\"NumericLessThan\\":0,\\"Next\\":\\"Done\\"}],\\"Default\\":\\"Wait 3 Seconds\\"},\\"Wait 3 Seconds\\":{\\"Type\\":\\"Wait\\",\\"Seconds\\":3,\\"Next\\":\\"GetECSTasks\\"},\\"Desire15\\":{\\"Type\\":\\"Pass\\",\\"Result\\":{\\"Desired\\":15},\\"OutputPath\\":\\"$\\",\\"Next\\":\\"SNSScaleOut\\"},\\"Desire10\\":{\\"Type\\":\\"Pass\\",\\"Result\\":{\\"Desired\\":10},\\"OutputPath\\":\\"$\\",\\"Next\\":\\"SNSScaleOut\\"},\\"Desire2\\":{\\"Type\\":\\"Pass\\",\\"Result\\":{\\"Desired\\":2},\\"OutputPath\\":\\"$\\",\\"Next\\":\\"SNSScaleOut\\"},\\"Done\\":{\\"Type\\":\\"Pass\\",\\"End\\":true}},\\"TimeoutSeconds\\":86400}",
+            ],
+          ],
+        },
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "FargateFastAutoscalerRole8A06D378",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+    },
+    "FargateFastAutoscaler894DC9AC": Object {
+      "Properties": Object {
+        "Location": Object {
+          "ApplicationId": "arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-awscli",
+          "SemanticVersion": "1.16.281",
+        },
+        "Parameters": Object {},
+      },
+      "Type": "AWS::Serverless::Application",
+    },
+    "FargateFastAutoscalerFargateFastAutoscalertopic289CC33D": Object {
+      "Properties": Object {
+        "TopicName": "FargateFastAutoscalerDemo-FargateFastAutoscaler",
+      },
+      "Type": "AWS::SNS::Topic",
+    },
+    "FargateFastAutoscalerHttpPublicSecurityGroupE16EE427": Object {
+      "Properties": Object {
+        "GroupDescription": "FargateFastAutoscalerDemo/FargateFastAutoscaler/HttpPublicSecurityGroup",
+        "GroupName": "HttpPublicSecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:80",
+            "FromPort": 80,
+            "IpProtocol": "tcp",
+            "ToPort": 80,
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "FargateFastAutoscalerRole8A06D378": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "states.",
+                      Object {
+                        "Ref": "AWS::Region",
+                      },
+                      ".amazonaws.com",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "FargateFastAutoscalerRoleDefaultPolicy92967F71": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "FargateFastAutoscalerfargateWatcherFuncABFB8D87",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": "sns:Publish",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Ref": "FargateFastAutoscalerFargateFastAutoscalertopic289CC33D",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "FargateFastAutoscalerRoleDefaultPolicy92967F71",
+        "Roles": Array [
+          Object {
+            "Ref": "FargateFastAutoscalerRole8A06D378",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "FargateFastAutoscalerSharedSecurityGroupE4FD37BC": Object {
+      "Properties": Object {
+        "GroupDescription": "FargateFastAutoscalerDemo/FargateFastAutoscaler/SharedSecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "FargateFastAutoscalerSharedSecurityGroupfromFargateFastAutoscalerDemoFargateFastAutoscalerHttpPublicSecurityGroup2D7F9DBF80A0B46D15": Object {
+      "Properties": Object {
+        "Description": "Load balancer to target",
+        "FromPort": 80,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "FargateFastAutoscalerSharedSecurityGroupE4FD37BC",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "FargateFastAutoscalerHttpPublicSecurityGroupE16EE427",
+            "GroupId",
+          ],
+        },
+        "ToPort": 80,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "FargateFastAutoscalerSharedSecurityGroupfromFargateFastAutoscalerDemoFargateFastAutoscalerSharedSecurityGroup39844A80ALLTRAFFIC7C7C0C33": Object {
+      "Properties": Object {
+        "Description": "from FargateFastAutoscalerDemoFargateFastAutoscalerSharedSecurityGroup39844A80:ALL TRAFFIC",
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "FargateFastAutoscalerSharedSecurityGroupE4FD37BC",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "-1",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "FargateFastAutoscalerSharedSecurityGroupE4FD37BC",
+            "GroupId",
+          ],
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "FargateFastAutoscalercdkfargatedemotaskdef0052A977": Object {
+      "Properties": Object {
+        "ContainerDefinitions": Array [
+          Object {
+            "Cpu": 0,
+            "Essential": true,
+            "Image": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  Object {
+                    "Ref": "AWS::AccountId",
+                  },
+                  ".dkr.ecr.",
+                  Object {
+                    "Ref": "AWS::Region",
+                  },
+                  ".",
+                  Object {
+                    "Ref": "AWS::URLSuffix",
+                  },
+                  "/aws-cdk/assets:cf4b53f054ebfe456104c0dd306789684184da901940ed21860bcd3021370a74",
+                ],
+              ],
+            },
+            "LogConfiguration": Object {
+              "LogDriver": "awslogs",
+              "Options": Object {
+                "awslogs-group": Object {
+                  "Ref": "FargateFastAutoscalercdkfargatedemotaskdefmainLogGroup3EC698CC",
+                },
+                "awslogs-region": Object {
+                  "Ref": "AWS::Region",
+                },
+                "awslogs-stream-prefix": "echo-http-req",
+              },
+            },
+            "Name": "main",
+            "PortMappings": Array [
+              Object {
+                "ContainerPort": 80,
+                "Protocol": "tcp",
+              },
+            ],
+          },
+          Object {
+            "Cpu": 0,
+            "Essential": true,
+            "Image": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  Object {
+                    "Ref": "AWS::AccountId",
+                  },
+                  ".dkr.ecr.",
+                  Object {
+                    "Ref": "AWS::Region",
+                  },
+                  ".",
+                  Object {
+                    "Ref": "AWS::URLSuffix",
+                  },
+                  "/aws-cdk/assets:c90dd04cc90d5dcf6d483f813e9e0458e5c79f13c09003ec5344fb03e8fb75f7",
+                ],
+              ],
+            },
+            "LogConfiguration": Object {
+              "LogDriver": "awslogs",
+              "Options": Object {
+                "awslogs-group": Object {
+                  "Ref": "FargateFastAutoscalercdkfargatedemotaskdefbackendLogGroup7287EFA4",
+                },
+                "awslogs-region": Object {
+                  "Ref": "AWS::Region",
+                },
+                "awslogs-stream-prefix": "echo-http-req",
+              },
+            },
+            "Name": "backend",
+            "PortMappings": Array [
+              Object {
+                "ContainerPort": 2015,
+                "Protocol": "tcp",
+              },
+            ],
+          },
+        ],
+        "Cpu": "256",
+        "ExecutionRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "FargateFastAutoscalercdkfargatedemotaskdefExecutionRoleFD9FB74C",
+            "Arn",
+          ],
+        },
+        "Family": "FargateFastAutoscalerDemoFargateFastAutoscalercdkfargatedemotaskdefAA3E0511",
+        "Memory": "512",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": Array [
+          "FARGATE",
+        ],
+        "TaskRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "FargateFastAutoscalerfgDemoTaskExecutionRoleA058D585",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ECS::TaskDefinition",
+    },
+    "FargateFastAutoscalercdkfargatedemotaskdefExecutionRoleDefaultPolicy290D78C1": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":ecr:",
+                    Object {
+                      "Ref": "AWS::Region",
+                    },
+                    ":",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":repository/aws-cdk/assets",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "ecr:GetAuthorizationToken",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "FargateFastAutoscalercdkfargatedemotaskdefmainLogGroup3EC698CC",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "FargateFastAutoscalercdkfargatedemotaskdefbackendLogGroup7287EFA4",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "FargateFastAutoscalercdkfargatedemotaskdefExecutionRoleDefaultPolicy290D78C1",
+        "Roles": Array [
+          Object {
+            "Ref": "FargateFastAutoscalercdkfargatedemotaskdefExecutionRoleFD9FB74C",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "FargateFastAutoscalercdkfargatedemotaskdefExecutionRoleFD9FB74C": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ecs-tasks.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "FargateFastAutoscalercdkfargatedemotaskdefbackendLogGroup7287EFA4": Object {
+      "DeletionPolicy": "Retain",
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "FargateFastAutoscalercdkfargatedemotaskdefmainLogGroup3EC698CC": Object {
+      "DeletionPolicy": "Retain",
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "FargateFastAutoscalerdemoserviceServiceAB1E9D05": Object {
+      "DependsOn": Array [
+        "FargateFastAutoscalerexternalPublicListenerfgechoreqGroupFCA039C2",
+        "FargateFastAutoscalerexternalPublicListenerDE3F42B8",
+      ],
+      "Properties": Object {
+        "Cluster": Object {
+          "Ref": "FargateFastAutoscalerfgCluster193B9F00",
+        },
+        "DeploymentConfiguration": Object {
+          "MaximumPercent": 200,
+          "MinimumHealthyPercent": 50,
+        },
+        "DesiredCount": 2,
+        "EnableECSManagedTags": false,
+        "HealthCheckGracePeriodSeconds": 60,
+        "LaunchType": "FARGATE",
+        "LoadBalancers": Array [
+          Object {
+            "ContainerName": "main",
+            "ContainerPort": 80,
+            "TargetGroupArn": Object {
+              "Ref": "FargateFastAutoscalerexternalPublicListenerfgechoreqGroupFCA039C2",
+            },
+          },
+        ],
+        "NetworkConfiguration": Object {
+          "AwsvpcConfiguration": Object {
+            "AssignPublicIp": "DISABLED",
+            "SecurityGroups": Array [
+              Object {
+                "Fn::GetAtt": Array [
+                  "FargateFastAutoscalerSharedSecurityGroupE4FD37BC",
+                  "GroupId",
+                ],
+              },
+            ],
+            "Subnets": Array [
+              Object {
+                "Ref": "VpcPrivateSubnet1Subnet536B997A",
+              },
+              Object {
+                "Ref": "VpcPrivateSubnet2Subnet3788AAA1",
+              },
+            ],
+          },
+        },
+        "TaskDefinition": Object {
+          "Ref": "FargateFastAutoscalercdkfargatedemotaskdef0052A977",
+        },
+      },
+      "Type": "AWS::ECS::Service",
+    },
+    "FargateFastAutoscalerexternalDE044CB6": Object {
+      "DependsOn": Array [
+        "VpcPublicSubnet1DefaultRoute3DA9E72A",
+        "VpcPublicSubnet2DefaultRoute97F91067",
+      ],
+      "Properties": Object {
+        "LoadBalancerAttributes": Array [
+          Object {
+            "Key": "deletion_protection.enabled",
+            "Value": "false",
+          },
+        ],
+        "Scheme": "internet-facing",
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "FargateFastAutoscalerHttpPublicSecurityGroupE16EE427",
+              "GroupId",
+            ],
+          },
+        ],
+        "Subnets": Array [
+          Object {
+            "Ref": "VpcPublicSubnet1Subnet5C2D37C4",
+          },
+          Object {
+            "Ref": "VpcPublicSubnet2Subnet691E08A3",
+          },
+        ],
+        "Type": "application",
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    },
+    "FargateFastAutoscalerexternalPublicListenerDE3F42B8": Object {
+      "Properties": Object {
+        "DefaultActions": Array [
+          Object {
+            "TargetGroupArn": Object {
+              "Ref": "FargateFastAutoscalerexternalPublicListenerfgechoreqGroupFCA039C2",
+            },
+            "Type": "forward",
+          },
+        ],
+        "LoadBalancerArn": Object {
+          "Ref": "FargateFastAutoscalerexternalDE044CB6",
+        },
+        "Port": 80,
+        "Protocol": "HTTP",
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+    },
+    "FargateFastAutoscalerexternalPublicListenerfgechoreqGroupFCA039C2": Object {
+      "Properties": Object {
+        "HealthCheckPath": "/",
+        "HealthCheckPort": "traffic-port",
+        "HealthyThresholdCount": 5,
+        "Matcher": Object {
+          "HttpCode": "200,301,302",
+        },
+        "Port": 80,
+        "Protocol": "HTTP",
+        "TargetGroupAttributes": Array [
+          Object {
+            "Key": "deregistration_delay.timeout_seconds",
+            "Value": "3",
+          },
+        ],
+        "TargetType": "ip",
+        "UnhealthyThresholdCount": 2,
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+    },
+    "FargateFastAutoscalerfargateWatcherFuncABFB8D87": Object {
+      "DependsOn": Array [
+        "FargateFastAutoscalerlambdaRoleDefaultPolicy98409DE4",
+        "FargateFastAutoscalerlambdaRole1466FC5C",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameterscc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508S3Bucket7C1537BB",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameterscc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508S3VersionKey70117FBC",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameterscc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508S3VersionKey70117FBC",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "cluster": Object {
+              "Ref": "FargateFastAutoscalerfgCluster193B9F00",
+            },
+            "disable_scalein": "yes",
+            "region": Object {
+              "Ref": "AWS::Region",
+            },
+            "service": Object {
+              "Fn::GetAtt": Array [
+                "FargateFastAutoscalerdemoserviceServiceAB1E9D05",
+                "Name",
+              ],
+            },
+          },
+        },
+        "Handler": "main",
+        "Layers": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "FargateFastAutoscaler894DC9AC",
+              "Outputs.LayerVersionArn",
+            ],
+          },
+        ],
+        "MemorySize": 1024,
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "FargateFastAutoscalerlambdaRole1466FC5C",
+            "Arn",
+          ],
+        },
+        "Runtime": "provided",
+        "Timeout": 60,
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "FargateFastAutoscalerSharedSecurityGroupE4FD37BC",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            Object {
+              "Ref": "VpcPrivateSubnet1Subnet536B997A",
+            },
+            Object {
+              "Ref": "VpcPrivateSubnet2Subnet3788AAA1",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "FargateFastAutoscalerfgCluster193B9F00": Object {
+      "Type": "AWS::ECS::Cluster",
+    },
+    "FargateFastAutoscalerfgDemoTaskExecutionRoleA058D585": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ecs-tasks.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "FargateFastAutoscalerfgDemoTaskExecutionRoleDefaultPolicy9F93188D": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "xray:PutTraceSegments",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "FargateFastAutoscalerfgDemoTaskExecutionRoleDefaultPolicy9F93188D",
+        "Roles": Array [
+          Object {
+            "Ref": "FargateFastAutoscalerfgDemoTaskExecutionRoleA058D585",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "FargateFastAutoscalerlambdaRole1466FC5C": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/AmazonECS_FullAccess",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/AmazonEC2ReadOnlyAccess",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "FargateFastAutoscalerlambdaRoleDefaultPolicy98409DE4": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "FargateFastAutoscalerlambdaRoleDefaultPolicy98409DE4",
+        "Roles": Array [
+          Object {
+            "Ref": "FargateFastAutoscalerlambdaRole1466FC5C",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "Vpc8378EB38": Object {
+      "Properties": Object {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "FargateFastAutoscalerDemo/Vpc",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::VPC",
+    },
+    "VpcIGWD7BA715C": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "FargateFastAutoscalerDemo/Vpc",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::InternetGateway",
+    },
+    "VpcPrivateSubnet1DefaultRouteBE02A9ED": Object {
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": Object {
+          "Ref": "VpcPublicSubnet1NATGateway4D7517AA",
+        },
+        "RouteTableId": Object {
+          "Ref": "VpcPrivateSubnet1RouteTableB2C5B500",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "VpcPrivateSubnet1RouteTableAssociation70C59FA6": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "VpcPrivateSubnet1RouteTableB2C5B500",
+        },
+        "SubnetId": Object {
+          "Ref": "VpcPrivateSubnet1Subnet536B997A",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "VpcPrivateSubnet1RouteTableB2C5B500": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "FargateFastAutoscalerDemo/Vpc/PrivateSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "VpcPrivateSubnet1Subnet536B997A": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            0,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.128.0/18",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "FargateFastAutoscalerDemo/Vpc/PrivateSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "VpcPrivateSubnet2DefaultRoute060D2087": Object {
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": Object {
+          "Ref": "VpcPublicSubnet1NATGateway4D7517AA",
+        },
+        "RouteTableId": Object {
+          "Ref": "VpcPrivateSubnet2RouteTableA678073B",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "VpcPrivateSubnet2RouteTableA678073B": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "FargateFastAutoscalerDemo/Vpc/PrivateSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "VpcPrivateSubnet2RouteTableAssociationA89CAD56": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "VpcPrivateSubnet2RouteTableA678073B",
+        },
+        "SubnetId": Object {
+          "Ref": "VpcPrivateSubnet2Subnet3788AAA1",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "VpcPrivateSubnet2Subnet3788AAA1": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            1,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.192.0/18",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "FargateFastAutoscalerDemo/Vpc/PrivateSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "VpcPublicSubnet1DefaultRoute3DA9E72A": Object {
+      "DependsOn": Array [
+        "VpcVPCGWBF912B6E",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "VpcIGWD7BA715C",
+        },
+        "RouteTableId": Object {
+          "Ref": "VpcPublicSubnet1RouteTable6C95E38E",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "VpcPublicSubnet1EIPD7E02669": Object {
+      "Properties": Object {
+        "Domain": "vpc",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "FargateFastAutoscalerDemo/Vpc/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::EIP",
+    },
+    "VpcPublicSubnet1NATGateway4D7517AA": Object {
+      "Properties": Object {
+        "AllocationId": Object {
+          "Fn::GetAtt": Array [
+            "VpcPublicSubnet1EIPD7E02669",
+            "AllocationId",
+          ],
+        },
+        "SubnetId": Object {
+          "Ref": "VpcPublicSubnet1Subnet5C2D37C4",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "FargateFastAutoscalerDemo/Vpc/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::NatGateway",
+    },
+    "VpcPublicSubnet1RouteTable6C95E38E": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "FargateFastAutoscalerDemo/Vpc/PublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "VpcPublicSubnet1RouteTableAssociation97140677": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "VpcPublicSubnet1RouteTable6C95E38E",
+        },
+        "SubnetId": Object {
+          "Ref": "VpcPublicSubnet1Subnet5C2D37C4",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "VpcPublicSubnet1Subnet5C2D37C4": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            0,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.0.0/18",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "FargateFastAutoscalerDemo/Vpc/PublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "VpcPublicSubnet2DefaultRoute97F91067": Object {
+      "DependsOn": Array [
+        "VpcVPCGWBF912B6E",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "VpcIGWD7BA715C",
+        },
+        "RouteTableId": Object {
+          "Ref": "VpcPublicSubnet2RouteTable94F7E489",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "VpcPublicSubnet2RouteTable94F7E489": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "FargateFastAutoscalerDemo/Vpc/PublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "VpcPublicSubnet2RouteTableAssociationDD5762D8": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "VpcPublicSubnet2RouteTable94F7E489",
+        },
+        "SubnetId": Object {
+          "Ref": "VpcPublicSubnet2Subnet691E08A3",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "VpcPublicSubnet2Subnet691E08A3": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            1,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.64.0/18",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "FargateFastAutoscalerDemo/Vpc/PublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "VpcVPCGWBF912B6E": Object {
+      "Properties": Object {
+        "InternetGatewayId": Object {
+          "Ref": "VpcIGWD7BA715C",
+        },
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+    },
+  },
+  "Transform": "AWS::Serverless-2016-10-31",
+}
+`;

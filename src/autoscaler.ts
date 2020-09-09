@@ -122,7 +122,7 @@ export class FargateFastAutoscaler extends cdk.Construct {
     this.fargateTaskDef = demoTaskDef
 
     const mainContainer = demoTaskDef.addContainer('main', {
-      image: ecs.ContainerImage.fromAsset(path.join(__dirname, './nginx')),
+      image: ecs.ContainerImage.fromAsset(path.join(__dirname, '../nginx')),
       cpu: 0,
       logging: new ecs.AwsLogDriver({
         streamPrefix: 'echo-http-req',
@@ -233,7 +233,7 @@ export class FargateFastAutoscaler extends cdk.Construct {
     const fargateWatcherFunc = new lambda.Function(this, 'fargateWatcherFunc', {
       runtime: lambda.Runtime.PROVIDED,
       handler: 'main',
-      code: lambda.Code.fromAsset(path.join(__dirname, './sam/fargateWatcherFunc/func.d')),
+      code: lambda.Code.fromAsset(path.join(__dirname, '../sam/fargateWatcherFunc/func.d')),
       layers: [lambda.LayerVersion.fromLayerVersionArn(this, 'AwsCliLayer', this.layerVersionArn)],
       memorySize: 1024,
       timeout: cdk.Duration.minutes(1),
