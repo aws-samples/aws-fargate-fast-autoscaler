@@ -1,0 +1,21 @@
+# Automatically approve yarn upgrade PRs made by github-actions[bot]
+# Only does approvals! A different GitHub Action takes care of merging.
+name: Auto-approve YarnUpgrade
+on:
+  pull_request:
+    types:
+      - labeled
+      - opened
+      - ready_for_review
+      - reopened
+      - synchronize
+      - unlabeled
+      - unlocked
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: hmarr/auto-approve-action@v2.0.0
+      if: github.event.pull_request.user.login == 'cdk-automation' && contains(github.event.pull_request.title, 'yarn upgrade')
+      with:
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
