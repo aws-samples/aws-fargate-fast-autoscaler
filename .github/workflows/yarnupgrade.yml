@@ -1,0 +1,31 @@
+name: YarnUpgrade
+on:
+  schedule:
+  - cron: 0 0 * * *
+  workflow_dispatch: {}
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    env:
+      CI: "true"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.17.0
+      - name: Set git identity
+        run: |-
+          git config user.name "Auto-yarn-upgrade"
+          git config user.email "github-actions@github.com"
+      - run: yarn upgrade
+      - run: git restore package.json
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.AUTOMATION_GITHUB_TOKEN }}
+          commit-message: "chore: yarn upgradae"
+          branch: auto/yarn-upgrade
+          title: "chore: yarn upgrade"
+          body: This PR runs the yarn upgrade
+    container:
+      image: jsii/superchain
