@@ -1,0 +1,30 @@
+name: "Set Issue Label and Assignee"
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - edited
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Naturalclar/issue-action@f229cda
+        if: github.event.pull_request.user.login == 'github-actions[bot]' && contains(github.event.pull_request.title, 'upgrade projen')
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          title-or-body: "title"
+          parameters: >
+            [
+            {"keywords":["upgrade projen"],"labels":["projen/upgrade", "auto-merge"],"assignees":["pahud"]}
+            ]
+      - uses: Naturalclar/issue-action@f229cda
+        if: github.event.pull_request.user.login == 'github-actions[bot]' && contains(github.event.pull_request.title, 'yarn upgrade')
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          title-or-body: "title"
+          parameters: >
+            [
+            {"keywords":["yarn upgrade"],"labels":["yarn/upgrade", "auto-merge"],"assignees":["pahud"]}
+            ]
