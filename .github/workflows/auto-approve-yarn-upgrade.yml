@@ -16,6 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: hmarr/auto-approve-action@v2.0.0
-      if: github.event.pull_request.user.login == 'github-actions[bot]' && contains(github.event.pull_request.title, 'yarn upgrade')
+      if: github.event.pull_request.user.login == 'cdk-automation' && contains(github.event.pull_request.title, 'yarn upgrade')
       with:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
