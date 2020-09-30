@@ -1,10 +1,4 @@
-# Automatically approve PRs
-#
-# Written to look at the original author of the PR (instead of the current
-# actor) in order to be able to backresolve existing PRs using this action (by
-# mass labeling them). Leads to slightly unnecessary spammage of aprovals in a
-# PR...
-#
+# Automatically approve yarn upgrade PRs made by github-actions[bot]
 # Only does approvals! A different GitHub Action takes care of merging.
 name: Auto-approve YarnUpgrade
 on:
@@ -21,7 +15,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: hmarr/auto-approve-action@7782c7e2bdf62b4d79bdcded8332808fd2f179cd
-      if: github.event.pull_request.user.login == 'dependabot[bot]' || github.event.pull_request.user.login == 'github-actions[bot]'
+    - uses: hmarr/auto-approve-action@v2.0.0
+      if: github.event.pull_request.user.login == 'github-actions[bot]' && contains(github.event.pull_request.title, 'yarn upgrade')
       with:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
