@@ -1,4 +1,4 @@
-# Automatically approve PRs made by Dependabot
+# Automatically approve PRs
 #
 # Written to look at the original author of the PR (instead of the current
 # actor) in order to be able to backresolve existing PRs using this action (by
@@ -6,7 +6,7 @@
 # PR...
 #
 # Only does approvals! A different GitHub Action takes care of merging.
-name: Auto-approve Dependabot
+name: Auto-approve YarnUpgrade
 on:
   pull_request:
     types:
@@ -22,6 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: hmarr/auto-approve-action@7782c7e2bdf62b4d79bdcded8332808fd2f179cd
-      if: github.event.pull_request.user.login == 'dependabot[bot]' || github.event.pull_request.user.login == 'dependabot-preview[bot]'
+      if: github.event.pull_request.user.login == 'dependabot[bot]' || github.event.pull_request.user.login == 'github-actions[bot]'
       with:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
