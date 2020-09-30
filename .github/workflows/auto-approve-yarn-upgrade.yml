@@ -18,4 +18,4 @@ jobs:
     - uses: hmarr/auto-approve-action@v2.0.0
       if: github.event.pull_request.user.login == 'cdk-automation' && contains(github.event.pull_request.title, 'yarn upgrade')
       with:
-        github-token: "${{ secrets.PROJEN_GITHUB_TOKEN }}"
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
