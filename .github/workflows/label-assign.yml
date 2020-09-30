@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: Naturalclar/issue-action@f229cda
-        if: github.event.pull_request.user.login == 'github-actions[bot]' && contains(github.event.pull_request.title, 'upgrade projen')
+        if: github.event.pull_request.user.login == 'pahud' && contains(github.event.pull_request.title, 'upgrade projen')
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           title-or-body: "title"
