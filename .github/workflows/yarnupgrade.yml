@@ -22,7 +22,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.AUTOMATION_GITHUB_TOKEN }}
+          token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
           push-to-fork: cdk-automation/aws-fargate-fast-autoscaler
           commit-message: "chore: yarn upgradae"
           branch: auto/yarn-upgrade
