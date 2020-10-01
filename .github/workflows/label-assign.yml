@@ -20,7 +20,7 @@ jobs:
             {"keywords":["upgrade projen"],"labels":["projen/upgrade", "auto-merge"],"assignees":["pahud"]}
             ]
       - uses: Naturalclar/issue-action@f229cda
-        if: github.event.pull_request.user.login == 'github-actions[bot]' && contains(github.event.pull_request.title, 'yarn upgrade')
+        if: github.event.pull_request.user.login == 'cdk-automation' && contains(github.event.pull_request.title, 'yarn upgrade')
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           title-or-body: "title"
