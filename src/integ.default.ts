@@ -1,18 +1,18 @@
-import * as cdk from '@aws-cdk/core'
+import * as path from 'path';
 import * as ec2 from '@aws-cdk/aws-ec2';
 import { AwsLogDriver, ContainerImage } from '@aws-cdk/aws-ecs';
+import * as cdk from '@aws-cdk/core';
 import { FargateFastAutoscaler } from './autoscaler';
-import * as path from 'path';
 
 export class IntegTesting {
   readonly stack: cdk.Stack[];
   constructor() {
 
-    const app = new cdk.App()
+    const app = new cdk.App();
 
-    const stack = new cdk.Stack(app, 'FargateFastAutoscalerDemo')
+    const stack = new cdk.Stack(app, 'FargateFastAutoscalerDemo');
 
-    const vpc = new ec2.Vpc(stack, 'Vpc', { maxAzs: 3, natGateways: 1 })
+    const vpc = new ec2.Vpc(stack, 'Vpc', { maxAzs: 3, natGateways: 1 });
 
     new FargateFastAutoscaler(stack, 'FargateFastAutoscaler', {
       vpc,
@@ -26,9 +26,9 @@ export class IntegTesting {
       backendContainerPortMapping: [
         { containerPort: 2015 },
       ],
-    })
+    });
 
-    this.stack = [ stack ]
+    this.stack = [stack];
   }
 }
 
