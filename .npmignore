@@ -8,10 +8,10 @@ dist
 /.github
 /.vscode
 /.projenrc.js
-/.eslintrc.json
 /tsconfig.jest.json
 /coverage
 /test
+/.eslintrc.json
 cdk.out
 cdk.context.json
 docker-compose.yml
