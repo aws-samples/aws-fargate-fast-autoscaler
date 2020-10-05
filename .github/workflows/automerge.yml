@@ -32,4 +32,4 @@ jobs:
         if: github.event.pull_request.user.login == 'pahud' && contains(github.event.pull_request.labels.*.name, 'auto-merge')
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABELS: "auto-merge,!work in progress":  
+          MERGE_LABELS: "auto-merge,!work in progress"
