@@ -7,7 +7,7 @@ const AWS_CDK_LATEST_RELEASE = '1.62.0';
 const PROJECT_NAME = 'cdk-fargate-fastautoscaler';
 const PROJECT_DESCRIPTION = 'A JSII construct lib to build AWS Fargate Fast Autoscaler';
 const PROJECT_REPOSITORY = 'https://github.com/aws-samples/aws-fargate-fast-autoscaler.git';
-const AUTOMATION_TOKEN = 'GITHUB_TOKEN';
+const AUTOMATION_TOKEN = 'PROJEN_GITHUB_TOKEN';
 
 const project = new AwsCdkConstructLibrary({
   "authorName": "Pahud Hsieh",
@@ -63,18 +63,17 @@ workflow.addJobs({
   upgrade: {
     'runs-on': 'ubuntu-latest',
     'steps': [
-      ...project.workflowBootstrapSteps,
-
-      // yarn upgrade
-      {
-        run: `yarn upgrade`
+      { uses: 'actions/checkout@v2' },
+      { 
+        uses: 'actions/setup-node@v1',
+        with: {
+          'node-version': '10.17.0',
+        }
       },
-
-      // upgrade projen
-      {
-        run: `yarn projen:upgrade`
-      },
-
+      { run: `yarn install` },
+      { run: `yarn projen` },
+      { run: `yarn upgrade` },
+      { run: `yarn projen:upgrade` },
       // submit a PR
       {
         name: 'Create Pull Request',

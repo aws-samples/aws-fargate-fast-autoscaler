@@ -12,15 +12,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10.17.0
-      - run: npx projen@0.3.91
-      - name: Anti-tamper check
-        run: git diff --exit-code
+      - run: yarn install
+      - run: yarn projen
       - run: yarn upgrade
       - run: yarn projen:upgrade
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
           commit-message: "chore: upgrade projen"
           branch: auto/projen-upgrade
           title: "chore: upgrade projen and yarn"
