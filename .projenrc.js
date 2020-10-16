@@ -10,11 +10,12 @@ const PROJECT_REPOSITORY = 'https://github.com/aws-samples/aws-fargate-fast-auto
 const AUTOMATION_TOKEN = 'PROJEN_GITHUB_TOKEN';
 
 const project = new AwsCdkConstructLibrary({
-  "authorName": "Pahud Hsieh",
-  "authorEmail": "pahudnet@gmail.com",
-  "name": PROJECT_NAME,
-  "description": PROJECT_DESCRIPTION,
-  "repository": PROJECT_REPOSITORY,
+  authorName: "Pahud Hsieh",
+  authorEmail: "pahudnet@gmail.com",
+  name: PROJECT_NAME,
+  description: PROJECT_DESCRIPTION,
+  repository: PROJECT_REPOSITORY,
+  dependabot: false,
 
   keywords: [
     'aws',
