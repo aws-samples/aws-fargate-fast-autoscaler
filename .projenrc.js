@@ -71,8 +71,6 @@ workflow.addJobs({
           'node-version': '10.17.0',
         }
       },
-      { run: `yarn install` },
-      { run: `yarn projen` },
       { run: `yarn upgrade` },
       { run: `yarn projen:upgrade` },
       // submit a PR
