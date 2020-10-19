@@ -21,15 +21,11 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - name: automerge-gh-actions
-        uses: pascalgn/automerge-action@a6eda95
-        if: github.event.pull_request.user.login == 'github-actions[bot]' && contains(github.event.pull_request.labels.*.name, 'auto-merge')
+      - name: automerge
+        uses: pascalgn/automerge-action@v0.12.0
+#         if: contains(github.event.pull_request.labels.*.name, 'auto-merge')
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABELS: "auto-merge,!work in progress"
-      - name: automerge-pahud
-        uses: pascalgn/automerge-action@a6eda95
-        if: github.event.pull_request.user.login == 'pahud' && contains(github.event.pull_request.labels.*.name, 'auto-merge')
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABELS: "auto-merge,!work in progress"
+          MERGE_RETRY_SLEEP: 10000
+          MERGE_RETRIES: 60
