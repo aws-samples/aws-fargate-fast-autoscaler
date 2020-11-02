@@ -3320,9 +3320,9 @@ ignore@^5.1.4:
   integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
 
 import-fresh@^3.0.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.2.1.tgz#633ff618506e793af5ac91bf48b72677e15cbe66"
-  integrity sha512-6e1q1cnWP2RXD9/keSkxHScg508CdXqXWgWBaETNhyuBFz+kUZlKboh+ISK+bU++DmbHimVBrOz/zzPe0sZ3sQ==
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.2.2.tgz#fc129c160c5d68235507f4331a6baad186bdbc3e"
+  integrity sha512-cTPNrlvJT6twpYy+YmKUKrTSjWFs3bjYjAhCwm+z4EOCubZxAuO+hHpRN64TqjEaYSHs7tJAE0w1CKMGmsG/lw==
   dependencies:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
@@ -5209,10 +5209,10 @@ progress@^2.0.0:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.3.138:
-  version "0.3.138"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.3.138.tgz#a7c47ae5ec2206e3035595e5e5265289e553ecc6"
-  integrity sha512-ksnx4t2eeSdCBUWo9iSMomcGYeskV+qnRVaI+hyOV6ABn5Pnqbcbt79Qs+qdyjwZuE+tGqvKUK3qZ8dud/iaMw==
+projen@^0.3.141:
+  version "0.3.141"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.3.141.tgz#cfe5fe3dd4dd7384cba14ca8cd5cf5eb2b7cdf38"
+  integrity sha512-SdTKWzhEaqozDyAT30ZcSurmQli7FSnJbaUP3nt3367O/fOgiQCB6BuP9uC+4mS8+fGuaHq7aPbRhGdtsCG6cw==
   dependencies:
     "@iarna/toml" "^2.2.5"
     chalk "^4.1.0"
