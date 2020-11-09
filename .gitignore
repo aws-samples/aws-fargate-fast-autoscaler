@@ -35,9 +35,9 @@ jspm_packages/
 .yarn-integrity
 # parcel-bundler cache (https://parceljs.org/)
 .cache
+/coverage
 /lib
 /dist
-/coverage
 .jsii
 tsconfig.json
 cdk.out
@@ -51,13 +51,13 @@ yarn-error.log
 !/.projenrc.js
 !version.json
 !/.versionrc.json
+!/test
 !/.github/workflows/build.yml
 !/.github/workflows/release.yml
 !/.mergify.yml
 !/.github/pull_request_template.md
 !/src
 !/tsconfig.jest.json
-!/test
 !/.eslintrc.json
 !/API.md
 !/.github/workflows/projenyarnupgrade.yml
