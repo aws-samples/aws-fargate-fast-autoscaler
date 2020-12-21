@@ -2029,9 +2029,9 @@ concat-stream@^2.0.0:
     typedarray "^0.0.6"
 
 constructs@^3.2.0:
-  version "3.2.74"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.2.74.tgz#e5650eed2451ca264178a6798c343e3b63fa14fe"
-  integrity sha512-kINDYW5Xnv/FY+4fbg3G34jvS/kfZ0Th2j/nPPG08peUkXExkY6CB/tarmYmkLIsHGI25x83pQHGDoFl7L8JLA==
+  version "3.2.75"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.2.75.tgz#30371066387d33af27fb246bd2250709440a05a4"
+  integrity sha512-m/WrqTAMAVN20iqZSwiLVv/ek75HZu4di9xYtVcWFjqUvuzXlRW6eE7TMa1UjY1Uf1Ht17Oy9xPFdBdb17V2XA==
 
 contains-path@^0.1.0:
   version "0.1.0"
@@ -2933,9 +2933,9 @@ fast-levenshtein@^2.0.6, fast-levenshtein@~2.0.6:
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
 fastq@^1.6.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/fastq/-/fastq-1.9.0.tgz#e16a72f338eaca48e91b5c23593bcc2ef66b7947"
-  integrity sha512-i7FVWL8HhVY+CTkwFxkN2mk3h+787ixS5S63eb78diVRc1MCssarHq3W5cj0av7YDSwmaV928RNag+U1etRQ7w==
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/fastq/-/fastq-1.10.0.tgz#74dbefccade964932cdf500473ef302719c652bb"
+  integrity sha512-NL2Qc5L3iQEsyYzweq7qfgy5OtXCmGzGvhElGEd/SoFWEMOEczNh5s5ocaF01HDetxz+p8ecjNPA6cZxxIHmzA==
   dependencies:
     reusify "^1.0.4"
 
@@ -3394,9 +3394,9 @@ ignore@^5.1.4, ignore@^5.1.8:
   integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
 
 import-fresh@^3.0.0, import-fresh@^3.2.1:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.2.2.tgz#fc129c160c5d68235507f4331a6baad186bdbc3e"
-  integrity sha512-cTPNrlvJT6twpYy+YmKUKrTSjWFs3bjYjAhCwm+z4EOCubZxAuO+hHpRN64TqjEaYSHs7tJAE0w1CKMGmsG/lw==
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.0.tgz#37162c25fcb9ebaa2e6e53d5b4d88ce17d9e0c2b"
+  integrity sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==
   dependencies:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
@@ -4278,9 +4278,9 @@ jsii-diff@^1.16.0:
     yargs "^16.1.1"
 
 jsii-docgen@^1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-1.5.4.tgz#a3991313e2978155e81ea88e8fdf4a86dbf999a8"
-  integrity sha512-RJvZtysQPy/xm6MIDMKioD/CQ6OmtjgQfoRSxOARIiplOfLt9OuuoOmJBzYCNZPLXdH+2WTSKEts8fgFvU1ywg==
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-1.5.5.tgz#1fd9a9dbc377121b0c0e64e8817e07aa31a05fda"
+  integrity sha512-qXZLD8eD7B8utKlYfBe1BZC+uuZbzKDSoZ/MppTwX/4+tsf5qtvIdT2X3iAYdiqRR59S+i+eoY3Fs6gwzys8lQ==
   dependencies:
     "@jsii/spec" "^1.9.0"
     fs-extra "^9.0.0"
