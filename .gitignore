@@ -49,9 +49,10 @@ docker-compose.yml
 images
 yarn-error.log
 !/.projen/tasks.json
+!/.projen/deps.json
 !/package.json
-!/.npmignore
 !/LICENSE
+!/.npmignore
 !/.projenrc.js
 !version.json
 !/.versionrc.json
