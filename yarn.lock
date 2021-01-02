@@ -1274,9 +1274,9 @@
   integrity sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==
 
 "@types/node@*":
-  version "14.14.17"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.17.tgz#29fab92f3986c0e379968ad3c2043683d8020dbb"
-  integrity sha512-G0lD1/7qD60TJ/mZmhog76k7NcpLWkPVGgzkRy3CTlnFu4LUQh5v2Wa661z6vnXmD8EQrnALUyf0VRtrACYztw==
+  version "14.14.19"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.19.tgz#5135176a8330b88ece4e9ab1fdcfc0a545b4bab4"
+  integrity sha512-4nhBPStMK04rruRVtVc6cDqhu7S9GZai0fpXgPXrFpcPX6Xul8xnrjSdGB4KPBVYG/R5+fXWdCM8qBoiULWGPQ==
 
 "@types/node@^10.17.0":
   version "10.17.50"
@@ -2030,9 +2030,9 @@ concat-stream@^2.0.0:
     typedarray "^0.0.6"
 
 constructs@^3.2.0:
-  version "3.2.88"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.2.88.tgz#4591f70642d173b28a1b0ce4ad15b98c2fbb8bda"
-  integrity sha512-yCfr1CHTlm94+TTIlTly+KG4u7fmeuFhMvNUhFQcX53f0wtr+8DRrSdjSNx4zjd0+1hlweerKWHEwKMkTJrVdQ==
+  version "3.2.89"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.2.89.tgz#f2cc9525100ea6f4224f251c67026b95b589b5b6"
+  integrity sha512-b8tn6ttheQz51fnoUqLO1/ubHxH+ycnrt089BQY1b6T9QbyX1hXGeqCEiVZxBfuYUaMFg64dOdr/tHu4e+LUDw==
 
 contains-path@^0.1.0:
   version "0.1.0"
@@ -4294,9 +4294,9 @@ jsii-diff@^1.16.0:
     yargs "^16.1.1"
 
 jsii-docgen@^1.5.4:
-  version "1.8.6"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-1.8.6.tgz#c560e0609dec03b9ef642415ec51e08d1572ba9a"
-  integrity sha512-EfDf25wwp+aKYXn/92yi/znClrWuD7hlUUcUdG7QiZKlAbKrx0l0x2h7sVx3Wmqwsk31ltR666R2kd0hrC2QnQ==
+  version "1.8.7"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-1.8.7.tgz#f3f33d0e3297901f26334249bd63fe30182a2da4"
+  integrity sha512-HZTK8z9WCoFC6b0ybpBk3YzxmPTXk1AVjRl86noUodLRYlNjTbYLpMzNuEXemtqlDK2OA+3khkaqiZhF7i/VDA==
   dependencies:
     "@jsii/spec" "^1.16.0"
     fs-extra "^9.0.1"
@@ -6505,9 +6505,9 @@ typescript@^3.9.5, typescript@~3.9.7:
   integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
 
 uglify-js@^3.1.4:
-  version "3.12.3"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.12.3.tgz#bb26c4abe0e68c55e9776bca9bed99a4df73facf"
-  integrity sha512-feZzR+kIcSVuLi3s/0x0b2Tx4Iokwqt+8PJM7yRHKuldg4MLdam4TCFeICv+lgDtuYiCtdmrtIP+uN9LWvDasw==
+  version "3.12.4"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.12.4.tgz#93de48bb76bb3ec0fc36563f871ba46e2ee5c7ee"
+  integrity sha512-L5i5jg/SHkEqzN18gQMTWsZk3KelRsfD1wUVNqtq0kzqWQqcJjyL8yc1o8hJgRrWqrAl2mUFbhfznEIoi7zi2A==
 
 union-value@^1.0.0:
   version "1.0.1"
