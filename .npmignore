@@ -8,7 +8,10 @@ junit.xml
 /coverage
 /test
 /.mergify.yml
+!/lib
 /src
+!/lib/**/*.js
+!/lib/**/*.d.ts
 dist
 /tsconfig.json
 /.github
@@ -16,13 +19,10 @@ dist
 /.idea
 /tsconfig.jest.json
 /.eslintrc.json
+!.jsii
 cdk.out
 cdk.context.json
 docker-compose.yml
 images
 yarn-error.log
 /codebase
-!/lib
-!/lib/**/*.js
-!/lib/**/*.d.ts
-!.jsii
