@@ -13,20 +13,16 @@ const project = new AwsCdkConstructLibrary({
   description: PROJECT_DESCRIPTION,
   repository: PROJECT_REPOSITORY,
   dependabot: false,
-
+  defaultReleaseBranch: 'master',
   keywords: [
     'aws',
     'fargate',
     'autoscaler',
   ],
-
   catalog: {
     twitter: 'pahudnet',
     announce: false,
   },
-
-  // creates PRs for projen upgrades
-  // projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 
   cdkVersion: AWS_CDK_LATEST_RELEASE,
   cdkDependencies: [
