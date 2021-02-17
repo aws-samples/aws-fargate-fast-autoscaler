@@ -2089,9 +2089,9 @@ concat-stream@^2.0.0:
     typedarray "^0.0.6"
 
 constructs@^3.2.0:
-  version "3.3.21"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.3.21.tgz#1290fbebe8716e729a6ac2a47118b58b8f7c4461"
-  integrity sha512-FsdsSAJlmlWSiWWuKTTP/a0SpEtRMM2w0P5lsJxvP4/42AOJOSmqckDyrr9WkESiaX94WnnK9khoVWGlBzkvNA==
+  version "3.3.22"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.3.22.tgz#5b841a28060a927f37b5d69c6b5902a029db5099"
+  integrity sha512-P/uv+O7EGmiMD8y8sahF+iLHYqQ2Wll4uaZxpoKQkIurlZ5lJOAIpxIcgr1+CyPYFS7nCprtmqkC8WImnVDzyQ==
 
 contains-path@^0.1.0:
   version "0.1.0"
@@ -2687,9 +2687,9 @@ eslint-import-resolver-node@^0.3.4:
     resolve "^1.13.1"
 
 eslint-import-resolver-typescript@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-2.3.0.tgz#0870988098bc6c6419c87705e6b42bee89425445"
-  integrity sha512-MHSXvmj5e0SGOOBhBbt7C+fWj1bJbtSYFAD85Xeg8nvUtuooTod2HQb8bfhE9f5QyyNxEfgzqOYFCvmdDIcCuw==
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-2.4.0.tgz#ec1e7063ebe807f0362a7320543aaed6fe1100e1"
+  integrity sha512-useJKURidCcldRLCNKWemr1fFQL1SzB3G4a0li6lFGvlc5xGe1hY343bvG07cbpCzPuM/lK19FIJB3XGFSkplA==
   dependencies:
     debug "^4.1.1"
     glob "^7.1.6"
@@ -4352,9 +4352,9 @@ jsii-diff@^1.16.0:
     yargs "^16.2.0"
 
 jsii-docgen@^1.5.4:
-  version "1.8.42"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-1.8.42.tgz#79ce0bcb785d3284ccc48410fe57f2df97e3e65a"
-  integrity sha512-ZkNRVedrbRLU/MzBkuyqAh863jJ9qlSow5KWcSBU2caR06ezZEfLqojXVsMo9Igxp0R7HP/NODmDovb+mq/aMQ==
+  version "1.8.44"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-1.8.44.tgz#60ad1182c40a42bf960caffae309dfbb2a251744"
+  integrity sha512-Ev9b2al96WG0Pq6EG5+8Py8QPyT2MXoxexM1ZnYwskq8PFJYARRnj3QCfEf4KBfNkIUzfwcBDXe2NRPYfFsXAg==
   dependencies:
     "@jsii/spec" "^1.16.0"
     fs-extra "^9.0.1"
