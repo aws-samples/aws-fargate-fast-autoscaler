@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.45](https://github.com/aws-samples/aws-fargate-fast-autoscaler/compare/v0.2.42...v0.2.45) (2021-02-17)
+
+
+### Bug Fixes
+
+* add defaultReleaseBranch ([370a79c](https://github.com/aws-samples/aws-fargate-fast-autoscaler/commit/370a79c4441263671db7a258ea213ba25f9033e0))
+
 ### 0.2.44 (2020-12-19)
 
 ### 0.2.43 (2020-12-19)
