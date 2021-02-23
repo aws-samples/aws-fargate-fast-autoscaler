@@ -69,7 +69,7 @@
     },
     {
       "name": "projen",
-      "version": "^0.16.11",
+      "version": "^0.16.12",
       "type": "build"
     },
     {
@@ -84,6 +84,10 @@
     {
       "name": "typescript",
       "type": "build"
+    },
+    {
+      "name": "projen-automate-it",
+      "type": "bundled"
     },
     {
       "name": "@aws-cdk/aws-ec2",
@@ -178,6 +182,10 @@
     {
       "name": "@aws-cdk/core",
       "version": "^1.78.0",
+      "type": "runtime"
+    },
+    {
+      "name": "projen-automate-it",
       "type": "runtime"
     }
   ],
