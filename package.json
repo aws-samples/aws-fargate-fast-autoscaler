@@ -46,8 +46,8 @@
     "jsii-docgen": "^1.5.4",
     "jsii-pacmak": "^1.16.0",
     "json-schema": "^0.2.5",
-    "projen": "^0.16.9",
-    "standard-version": "^9.0.0",
+    "projen": "^0.16.11",
+    "standard-version": "^9",
     "ts-jest": "^26.4.4",
     "typescript": "^3.9.5"
   },
