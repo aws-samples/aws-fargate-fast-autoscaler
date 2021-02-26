@@ -1941,9 +1941,9 @@ camelcase@^6.0.0, camelcase@^6.2.0:
   integrity sha512-c7wVvbw3f37nuobQNtgsgG9POC9qMbNuMQmTCqZv23b6MIz0fcYpBiOlv9gEN/hdLdnZTDQhg6e9Dq5M1vKvfg==
 
 caniuse-lite@^1.0.30001181:
-  version "1.0.30001191"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001191.tgz#bacb432b6701f690c8c5f7c680166b9a9f0843d9"
-  integrity sha512-xJJqzyd+7GCJXkcoBiQ1GuxEiOBCLQ0aVW9HMekifZsAVGdj5eJ4mFB9fEhSHipq9IOk/QXFJUiIr9lZT+EsGw==
+  version "1.0.30001192"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001192.tgz#b848ebc0ab230cf313d194a4775a30155d50ae40"
+  integrity sha512-63OrUnwJj5T1rUmoyqYTdRWBqFFxZFlyZnRRjDR8NSUQFB6A+j/uBORU/SyJ5WzDLg4SPiZH40hQCBNdZ/jmAw==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -2101,9 +2101,9 @@ color-name@~1.1.4:
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
 colorette@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.2.1.tgz#4d0b921325c14faf92633086a536db6e89564b1b"
-  integrity sha512-puCDz0CzydiSYOrnXpz/PKd69zRrribezjtE9yd4zvytoRc8+RY/KJPvtPFKZS3E3wP6neGyMe0vOTlHO5L3Pw==
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.2.2.tgz#cbcc79d5e99caea2dbf10eb3a26fd8b3e6acfa94"
+  integrity sha512-MKGMzyfeuutC/ZJ1cba9NqcNpfeqMUcYmyF1ZFY6/Cn7CNSAKx6a+s48sqLqyAiZuaP2TcqMhoo+dlwFnVxT9w==
 
 colors@^1.4.0:
   version "1.4.0"
@@ -2156,9 +2156,9 @@ concat-stream@^2.0.0:
     typedarray "^0.0.6"
 
 constructs@^3.2.0:
-  version "3.3.41"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.3.41.tgz#330de2a34542e47361fd94f4057037543493476b"
-  integrity sha512-1LD4j8IWQ5N/Bfm3Ufu8SS6zTy8ojV1jZm2eevPwBMiG7AGPl++bVJ438xfOzHyt2gJ390C9Plxc7R1esIUcCQ==
+  version "3.3.43"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.3.43.tgz#0fb826212fa25ad783b70332504e1c4f9a61dc5a"
+  integrity sha512-4Fi9XuoYAPkVrimpU/fo3SOUxB3cS/WjP77DGeJl1o0vsYsggqeBHRLK6GxRG7vpmnOhiyDlBIazJkMuR6YWuQ==
 
 contains-path@^0.1.0:
   version "0.1.0"
@@ -2628,9 +2628,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.3.649:
-  version "1.3.673"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.673.tgz#b4f81c930b388f962b7eba20d0483299aaa40913"
-  integrity sha512-ms+QR2ckfrrpEAjXweLx6kNCbpAl66DcW//3BZD4BV5KhUgr0RZRce1ON/9J3QyA3JO28nzgb5Xv8DnPr05ILg==
+  version "1.3.674"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.674.tgz#d97feefdf1d9411fdc9d56d17e1b9d67b818e710"
+  integrity sha512-DBmEKRVYLZAoQSW+AmLcTF5Bpwhk4RUkobtzXVDlfPPYIlbsH3Jfg3QbBjAfFcRARzMIo4YiMhp3N+RnMuo1Eg==
 
 emittery@^0.7.1:
   version "0.7.2"
@@ -4401,9 +4401,9 @@ jsii-diff@^1.22.0:
     yargs "^16.2.0"
 
 jsii-docgen@^1.8.51:
-  version "1.8.54"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-1.8.54.tgz#110e2e62d56921face2f6efc37440280363cc946"
-  integrity sha512-HYBjuuUqs4fkcC1xVJ3DWOvH7jkxd/PWa+caCJNzpLuX1PX/sScdKw1fKNBPCVbOuwkirq0AcjcmnQySXX22qA==
+  version "1.8.55"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-1.8.55.tgz#ecaf49e7d99daa1703f1caa542db20265a8421d0"
+  integrity sha512-0ii1FxIo81qmpzG7BJpe+xxkDupSfKjmQ0ZlGylGXU8tFWCGJeoWVdjepDZz7xOnIaVqxN5xRj+qq+S4HFXzJA==
   dependencies:
     "@jsii/spec" "^1.16.0"
     fs-extra "^9.0.1"
@@ -5427,10 +5427,10 @@ projen-automate-it@^0.0.4:
   dependencies:
     projen "^0.16.12"
 
-projen@^0.16.12, projen@^0.16.15:
-  version "0.16.15"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.16.15.tgz#ab75bd28e6b40f58ddd33448b95984798230783d"
-  integrity sha512-CKHIsGETPKuy6olIMsPiZaKDiRlkLqYQ7Ubs+22y+Zf0ZjbyK3imzYKjHkVXNHn3GPf4xPZdGPyjEs3F8ho5Xg==
+projen@^0.16.12, projen@^0.16.17:
+  version "0.16.17"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.16.17.tgz#48f8be09c5ab6d008a5c5b75eaf20f72768aff9f"
+  integrity sha512-Gf1t1bClMZ42K+meMfsP0mcsSzy6P389F+f6zn/wxFfpc9CL4baPVIvkv1JauNADmi/m3gYDnFENEr6HBWF65A==
   dependencies:
     "@iarna/toml" "^2.2.5"
     chalk "^4.1.0"
