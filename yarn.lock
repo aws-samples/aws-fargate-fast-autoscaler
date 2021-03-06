@@ -2155,9 +2155,9 @@ concat-stream@^2.0.0:
     typedarray "^0.0.6"
 
 constructs@^3.2.0:
-  version "3.3.55"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.3.55.tgz#ee54bd2202d8d72d9ce10694f055054d8cffef1f"
-  integrity sha512-PKlPeHnIN7EAdanoVpwUnj6Zb5Zhgb6lCQ1YTES52puksbw34TG7oqO2kzmTVTK3MVDMUdhCDKyroaVmNOtiiw==
+  version "3.3.58"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.3.58.tgz#bcc8759507e1f4a085da1db8b46f99f5fe474537"
+  integrity sha512-TSDyDQmHWs0fBJQjQIjVC5Hd7iLy62Pd6PTN4wOlr4dRGkByYS7Fzb87HOIewN6AZAZPxjCVR7MqtJM8RgVBsg==
 
 contains-path@^0.1.0:
   version "0.1.0"
@@ -4407,9 +4407,9 @@ jsii-diff@^1.22.0:
     yargs "^16.2.0"
 
 jsii-docgen@^1.8.51:
-  version "1.8.63"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-1.8.63.tgz#f70b6726dc53b58b71237e8caca23086ff188437"
-  integrity sha512-/mAEfjOVAx/L6/SgtwsDHO21AnFoK9zFZjO1sJ4BnLeHcaqMlbPTOzyNaJN4QY9lnFQbgMZlLFkqPScKSBcvaQ==
+  version "1.8.65"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-1.8.65.tgz#631d20b220418a6c653287b30c8d3cd07f9f0b02"
+  integrity sha512-KjXoRHvUqS92TbrOEs1673v6g+bF6/YRVLf8kV+KGY29/P7n/5B8zD35tlL8Zw1N/P5et/6udEPeUfANbBe11w==
   dependencies:
     "@jsii/spec" "^1.16.0"
     fs-extra "^9.0.1"
@@ -5433,10 +5433,10 @@ projen-automate-it@^0.0.4:
   dependencies:
     projen "^0.16.12"
 
-projen@^0.16.12, projen@^0.16.35:
-  version "0.16.35"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.16.35.tgz#1547f9bb7b1ea9d4450d3045014c239d0c0b11e6"
-  integrity sha512-AVpuGSw5oRdp7xhz5FkyDGyoLkgoa8IGtzw/w3qsLJ0zIKr5M6sSJLAVmBHO3D88RDjMkHfHCkfS7anG1mMEaA==
+projen@^0.16.12, projen@^0.16.36:
+  version "0.16.36"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.16.36.tgz#22de64b19b2b8794ef7f40afa820291129cb5b85"
+  integrity sha512-8HnnQ//hqnJoYf6ySYiZBh6T64PRBpbGsn119PXZfP2aIPAFHikGoCCGGa631FD44SDKXKlXOWoDPD3RAH4IUQ==
   dependencies:
     "@iarna/toml" "^2.2.5"
     chalk "^4.1.0"
