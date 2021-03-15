@@ -27,6 +27,9 @@ const project = new AwsCdkConstructLibrary({
   bundledDeps: [
     'projen-automate-it',
   ],
+  devDeps: [
+    'xmldom',
+  ],
   catalog: {
     twitter: 'pahudnet',
     announce: false,
