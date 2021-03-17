@@ -69,7 +69,7 @@
     },
     {
       "name": "projen",
-      "version": "^0.17.4",
+      "version": "^0.16.42",
       "type": "build"
     },
     {
@@ -83,10 +83,6 @@
     },
     {
       "name": "typescript",
-      "type": "build"
-    },
-    {
-      "name": "xmldom",
       "type": "build"
     },
     {
