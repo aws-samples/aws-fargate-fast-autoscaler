@@ -15,7 +15,7 @@ const project = new AwsCdkConstructLibrary({
   description: PROJECT_DESCRIPTION,
   repository: PROJECT_REPOSITORY,
   dependabot: false,
-  defaultReleaseBranch: 'master',
+  defaultReleaseBranch: 'main',
   keywords: [
     'aws',
     'fargate',
