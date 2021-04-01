@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.48](https://github.com/aws-samples/aws-fargate-fast-autoscaler/compare/v0.2.47...v0.2.48) (2021-04-01)
+
+
+### Bug Fixes
+
+* bump xmldom ([#246](https://github.com/aws-samples/aws-fargate-fast-autoscaler/issues/246)) ([b60f13e](https://github.com/aws-samples/aws-fargate-fast-autoscaler/commit/b60f13e09a98c0d3cb00bf8786210d4de2b20a25))
+* bump xmldom ([#248](https://github.com/aws-samples/aws-fargate-fast-autoscaler/issues/248)) ([cb5386d](https://github.com/aws-samples/aws-fargate-fast-autoscaler/commit/cb5386d9709e64b6bb46d6ae3f9d2031baf9b4c2))
+
 ### [0.2.47](https://github.com/aws-samples/aws-fargate-fast-autoscaler/compare/v0.2.46...v0.2.47) (2021-02-23)
 
 ### [0.2.46](https://github.com/aws-samples/aws-fargate-fast-autoscaler/compare/v0.2.42...v0.2.46) (2021-02-17)
