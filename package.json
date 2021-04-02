@@ -6,8 +6,6 @@
     "url": "https://github.com/aws-samples/aws-fargate-fast-autoscaler.git"
   },
   "scripts": {
-    "projen": "npx projen",
-    "start": "npx projen start",
     "clobber": "npx projen clobber",
     "compile": "npx projen compile",
     "test:compile": "npx projen test:compile",
@@ -22,7 +20,9 @@
     "package": "npx projen package",
     "eslint": "npx projen eslint",
     "compat": "npx projen compat",
-    "docgen": "npx projen docgen"
+    "docgen": "npx projen docgen",
+    "projen": "npx projen",
+    "start": "npx projen start"
   },
   "author": {
     "name": "Pahud Hsieh",
@@ -46,7 +46,7 @@
     "jsii-docgen": "^1.8.67",
     "jsii-pacmak": "^1.26.0",
     "json-schema": "^0.3.0",
-    "projen": "^0.16.42",
+    "projen": "^0.17.20",
     "standard-version": "^9",
     "ts-jest": "^26.5.4",
     "typescript": "^4.2.3"
