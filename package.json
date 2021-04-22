@@ -7,12 +7,12 @@
   },
   "scripts": {
     "clobber": "npx projen clobber",
+    "bump": "npx projen bump",
+    "unbump": "npx projen unbump",
     "compile": "npx projen compile",
     "test:compile": "npx projen test:compile",
     "test": "npx projen test",
     "build": "npx projen build",
-    "bump": "npx projen bump",
-    "release": "npx projen release",
     "test:watch": "npx projen test:watch",
     "test:update": "npx projen test:update",
     "projen:upgrade": "npx projen projen:upgrade",
@@ -46,7 +46,7 @@
     "jsii-docgen": "^1.8.67",
     "jsii-pacmak": "^1.26.0",
     "json-schema": "^0.3.0",
-    "projen": "^0.17.51",
+    "projen": "^0.17.54",
     "standard-version": "^9",
     "ts-jest": "^26.5.4",
     "typescript": "^4.2.3"
@@ -86,7 +86,7 @@
   ],
   "main": "lib/index.js",
   "license": "Apache-2.0",
-  "version": "0.2.48",
+  "version": "0.0.0",
   "jest": {
     "testMatch": [
       "**/__tests__/**/*.ts?(x)",
