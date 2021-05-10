@@ -1508,9 +1508,9 @@ ajv@^6.10.0, ajv@^6.12.3, ajv@^6.12.4:
     uri-js "^4.2.2"
 
 ajv@^8.0.1:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.2.0.tgz#c89d3380a784ce81b2085f48811c4c101df4c602"
-  integrity sha512-WSNGFuyWd//XO8n/m/EaOlNLtO0yL8EXT/74LqT4khdhpZjP7lkj/kT5uwRmGitKEVp/Oj7ZUHeGfPtgHhQ5CA==
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.3.0.tgz#25ee7348e32cdc4a1dbb38256bf6bdc451dd577c"
+  integrity sha512-RYE7B5An83d7eWnDR8kbdaIFqmKCNsP16ay1hDbJEU+sa0e3H9SebskCt0Uufem6cfAVu7Col6ubcn/W+Sm8/Q==
   dependencies:
     fast-deep-equal "^3.1.1"
     json-schema-traverse "^1.0.0"
@@ -3638,9 +3638,9 @@ is-ci@^2.0.0:
     ci-info "^2.0.0"
 
 is-core-module@^2.2.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.3.0.tgz#d341652e3408bca69c4671b79a0954a3d349f887"
-  integrity sha512-xSphU2KG9867tsYdLD4RWQ1VqdFl4HTO9Thf3I/3dLEfr0dbPTWKsuCKrgqMljg4nPE+Gq0VCnzT3gr0CyBmsw==
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.4.0.tgz#8e9fc8e15027b011418026e98f0e6f4d86305cc1"
+  integrity sha512-6A2fkfq1rfeQZjxrZJGerpLCTHRNEBiSgnu0+obeJpEPZRUooHgsizvzv0ZjJwOz3iWIHdJtVWJ/tmPr3D21/A==
   dependencies:
     has "^1.0.3"
 
@@ -4391,9 +4391,9 @@ jsii-diff@^1.26.0:
     yargs "^16.2.0"
 
 jsii-docgen@^1.8.67:
-  version "1.8.76"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-1.8.76.tgz#f7d2dc5bc53d91a84ecb077dfb0a964fd15a862a"
-  integrity sha512-ca1IszTvRPE9AcNk3qGQF11rqb6rVFoko+VQImhSX6M8KrQlx7/AgQ3azbm0kvkHerdHj315izcxO0kbsQGHJA==
+  version "1.8.79"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-1.8.79.tgz#7a1051fee1bc231349dc0e99d4f1e85ec6f7b270"
+  integrity sha512-CCmS6g/HgejQLdkH6Njl8M4B+/ZKph8ipL3d11Dl5rGpIPZfSU7PrM+uK9vfsWUrLbILx7P0QXlSTNmYhqVZ9w==
   dependencies:
     "@jsii/spec" "^1.16.0"
     fs-extra "^9.0.1"
@@ -5422,10 +5422,10 @@ projen-automate-it@^0.0.8:
   dependencies:
     projen "^0.17"
 
-projen@^0.17, projen@^0.17.81:
-  version "0.17.81"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.17.81.tgz#cc6c0c8bb6c0b5406c8e1ad2af7897b34c136189"
-  integrity sha512-3QKOQrZghOGr0DGsR6elPlgMpOHklPzrh/wtUSsbMVvSvgRW2u+iUr5DHo040CbTz3qRyhRdH+7brAx1MvVFPQ==
+projen@^0.17, projen@^0.17.83:
+  version "0.17.83"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.17.83.tgz#a6f4a35dd0d24023dbb9de45359ad5c52382e5bb"
+  integrity sha512-id8TZ9u/28Kts5xO5uGBnX+ylI+0y+JUYh2S4pyKEF44peHUdFe8VpnRXqIzsa1b3g8oITtCzF1lkILnoomR8g==
   dependencies:
     "@iarna/toml" "^2.2.5"
     chalk "^4.1.0"
