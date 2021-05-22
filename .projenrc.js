@@ -1,6 +1,4 @@
 const { AwsCdkConstructLibrary } = require('projen');
-const { Automation } = require('projen-automate-it');
-
 
 const AWS_CDK_LATEST_RELEASE = '1.78.0';
 const PROJECT_NAME = 'cdk-fargate-fastautoscaler';
@@ -20,12 +18,6 @@ const project = new AwsCdkConstructLibrary({
     'aws',
     'fargate',
     'autoscaler',
-  ],
-  deps: [
-    'projen-automate-it',
-  ],
-  bundledDeps: [
-    'projen-automate-it',
   ],
   catalog: {
     twitter: 'pahudnet',
@@ -50,13 +42,6 @@ const project = new AwsCdkConstructLibrary({
     module: 'cdk_fargate_fastautoscaler',
   },
 });
-
-const automation = new Automation(project, {
-  automationToken: AUTOMATION_TOKEN,
-});
-automation.autoApprove();
-automation.autoMerge();
-automation.projenYarnUpgrade();
 
 const common_exclude = ['cdk.out', 'cdk.context.json', 'docker-compose.yml', 'images', 'yarn-error.log'];
 project.npmignore.exclude(...common_exclude, '/codebase');
