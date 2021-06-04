@@ -16,6 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: hmarr/auto-approve-action@v2.0.0
-      if: github.event.pull_request.user.login == 'github-actions[bot]' && contains(github.event.pull_request.title, 'upgrade-dependencies')
+      if: (github.event.pull_request.login == 'github-bot') && contains(github.event.pull_request.title, 'upgrade-dependencies')
       with:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
