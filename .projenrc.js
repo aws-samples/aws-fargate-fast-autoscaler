@@ -23,7 +23,9 @@ const project = new AwsCdkConstructLibrary({
     twitter: 'pahudnet',
     announce: false,
   },
-
+  autoApproveOptions: {
+    secret: AUTOMATION_TOKEN,
+  },
   cdkVersion: AWS_CDK_LATEST_RELEASE,
   cdkDependencies: [
     '@aws-cdk/core',
