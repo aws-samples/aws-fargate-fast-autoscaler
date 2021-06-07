@@ -1,4 +1,4 @@
-const { AwsCdkConstructLibrary } = require('projen');
+const { AwsCdkConstructLibrary, DependenciesUpgradeMechanism } = require('projen');
 
 const AWS_CDK_LATEST_RELEASE = '1.78.0';
 const PROJECT_NAME = 'cdk-fargate-fastautoscaler';
@@ -12,7 +12,6 @@ const project = new AwsCdkConstructLibrary({
   name: PROJECT_NAME,
   description: PROJECT_DESCRIPTION,
   repository: PROJECT_REPOSITORY,
-  dependabot: false,
   defaultReleaseBranch: 'main',
   keywords: [
     'aws',
@@ -23,8 +22,15 @@ const project = new AwsCdkConstructLibrary({
     twitter: 'pahudnet',
     announce: false,
   },
+  depsUpgrade: DependenciesUpgradeMechanism.githubWorkflow({
+    workflowOptions: {
+      labels: ['auto-approve', 'auto-merge'],
+      secret: AUTOMATION_TOKEN,
+    },
+  }),
   autoApproveOptions: {
-    secret: AUTOMATION_TOKEN,
+    secret: 'GITHUB_TOKEN',
+    allowedUsernames: ['pahud'],
   },
   cdkVersion: AWS_CDK_LATEST_RELEASE,
   cdkDependencies: [
