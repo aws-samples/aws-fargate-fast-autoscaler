@@ -45,7 +45,7 @@ const project = new AwsCdkConstructLibrary({
     '@aws-cdk/aws-stepfunctions',
     '@aws-cdk/aws-stepfunctions-tasks',
   ],
-
+  minNodeVersion: '12.20.0',
   python: {
     distName: 'cdk-fargate-fastautoscaler',
     module: 'cdk_fargate_fastautoscaler',
