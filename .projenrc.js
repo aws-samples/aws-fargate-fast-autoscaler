@@ -45,15 +45,11 @@ const project = new AwsCdkConstructLibrary({
     '@aws-cdk/aws-stepfunctions',
     '@aws-cdk/aws-stepfunctions-tasks',
   ],
-
+  minNodeVersion: '12.20.0',
   python: {
     distName: 'cdk-fargate-fastautoscaler',
     module: 'cdk_fargate_fastautoscaler',
   },
-});
-
-project.package.addField('resolutions', {
-  xmldom: 'github:xmldom/xmldom#0.7.0',
 });
 
 const common_exclude = ['cdk.out', 'cdk.context.json', 'docker-compose.yml', 'images', 'yarn-error.log'];
