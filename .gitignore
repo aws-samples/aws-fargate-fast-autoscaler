@@ -50,6 +50,7 @@ junit.xml
 .jsii
 tsconfig.json
 !/API.md
+!/.gitpod.yml
 cdk.out
 cdk.context.json
 docker-compose.yml

@@ -252,6 +252,18 @@
         }
       ]
     },
+    "gitpod:prebuild": {
+      "name": "gitpod:prebuild",
+      "description": "Prebuild setup for Gitpod",
+      "steps": [
+        {
+          "exec": "yarn install --frozen-lockfile --check-files"
+        },
+        {
+          "exec": "npx projen compile"
+        }
+      ]
+    },
     "release": {
       "name": "release",
       "description": "Prepare a release from \"main\" branch",
