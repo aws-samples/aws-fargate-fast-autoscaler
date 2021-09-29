@@ -1,8 +1,7 @@
 [![awscdk-jsii-template](https://img.shields.io/badge/built%20with-awscdk--jsii--template-blue)](https://github.com/pahud/awscdk-jsii-template)
 [![NPM version](https://badge.fury.io/js/cdk-fargate-fastautoscaler.svg)](https://badge.fury.io/js/cdk-fargate-fastautoscaler)
 [![PyPI version](https://badge.fury.io/py/cdk-fargate-fastautoscaler.svg)](https://badge.fury.io/py/cdk-fargate-fastautoscaler)
-![Build](https://github.com/aws-samples/aws-fargate-fast-autoscaler/workflows/Build/badge.svg)
-
+[![build](https://github.com/aws-samples/aws-fargate-fast-autoscaler/actions/workflows/build.yml/badge.svg)](https://github.com/aws-samples/aws-fargate-fast-autoscaler/actions/workflows/build.yml)
 ## aws-fargate-fast-autoscaler
 
 **AWS Fargate Fast Autosaler** - A Serverless Implementation that Triggers your AWS Fargate autoscaling in seconds with `cdk-fargate-fastautoscaler`.
