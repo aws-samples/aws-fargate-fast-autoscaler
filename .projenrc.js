@@ -9,6 +9,8 @@ const AUTOMATION_TOKEN = 'PROJEN_GITHUB_TOKEN';
 const project = new AwsCdkConstructLibrary({
   authorName: 'Pahud Hsieh',
   authorEmail: 'pahudnet@gmail.com',
+  cdkVersion: AWS_CDK_LATEST_RELEASE,
+  minNodeVersion: '12.20.0',
   name: PROJECT_NAME,
   description: PROJECT_DESCRIPTION,
   repository: PROJECT_REPOSITORY,
@@ -33,7 +35,6 @@ const project = new AwsCdkConstructLibrary({
     secret: 'GITHUB_TOKEN',
     allowedUsernames: ['pahud'],
   },
-  cdkVersion: AWS_CDK_LATEST_RELEASE,
   cdkDependencies: [
     '@aws-cdk/core',
     '@aws-cdk/aws-ec2',
