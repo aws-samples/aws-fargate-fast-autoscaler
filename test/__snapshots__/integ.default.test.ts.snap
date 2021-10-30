@@ -586,6 +586,10 @@ Object {
             "Key": "deregistration_delay.timeout_seconds",
             "Value": "3",
           },
+          Object {
+            "Key": "stickiness.enabled",
+            "Value": "false",
+          },
         ],
         "TargetType": "ip",
         "UnhealthyThresholdCount": 2,
