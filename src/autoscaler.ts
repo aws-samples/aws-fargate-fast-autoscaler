@@ -1,13 +1,16 @@
 import * as path from 'path';
-import * as ec2 from '@aws-cdk/aws-ec2';
-import * as ecs from '@aws-cdk/aws-ecs';
-import * as elbv2 from '@aws-cdk/aws-elasticloadbalancingv2';
-import * as iam from '@aws-cdk/aws-iam';
-import * as lambda from '@aws-cdk/aws-lambda';
-import * as sns from '@aws-cdk/aws-sns';
-import * as sfn from '@aws-cdk/aws-stepfunctions';
-import * as sfn_tasks from '@aws-cdk/aws-stepfunctions-tasks';
-import * as cdk from '@aws-cdk/core';
+import {
+  Stack, Duration, CfnResource, CfnOutput, Token,
+  aws_ec2 as ec2,
+  aws_ecs as ecs,
+  aws_elasticloadbalancingv2 as elbv2,
+  aws_iam as iam,
+  aws_lambda as lambda,
+  aws_sns as sns,
+  aws_stepfunctions as sfn,
+  aws_stepfunctions_tasks as sfn_tasks,
+} from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 
 const AWSCLI_LAYER_ARN = 'arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-awscli';
 const AWSCLI_LAYER_VERSION = '1.16.281';
@@ -65,7 +68,7 @@ export interface FargateFastAutoscalerProps {
 }
 
 
-export class FargateFastAutoscaler extends cdk.Construct {
+export class FargateFastAutoscaler extends Construct {
   public readonly fargateWatcherFuncArn: string;
   public readonly layerVersionArn: string;
   public readonly fargateService: ecs.FargateService;
@@ -73,11 +76,11 @@ export class FargateFastAutoscaler extends cdk.Construct {
   public readonly vpc: ec2.IVpc;
   public readonly region: string;
 
-  constructor(scope: cdk.Construct, id: string, props: FargateFastAutoscalerProps) {
+  constructor(scope: Construct, id: string, props: FargateFastAutoscalerProps) {
     super(scope, id);
 
     this.vpc = props.vpc;
-    this.region = cdk.Stack.of(this).region;
+    this.region = Stack.of(this).region;
 
     // create a security group that allows all traffic from the same sg
     const sg = new ec2.SecurityGroup(this, 'SharedSecurityGroup', {
@@ -155,7 +158,7 @@ export class FargateFastAutoscaler extends cdk.Construct {
       cluster: fgCluster,
       desiredCount: props.initialTaskNumber ?? 2,
       taskDefinition: demoTaskDef,
-      securityGroup: sg,
+      securityGroups: [sg],
     });
 
     this.fargateService = demoService;
@@ -170,7 +173,6 @@ export class FargateFastAutoscaler extends cdk.Construct {
     const externalListener = externalLB.addListener('PublicListener', {
       port: 80,
     });
-
 
     const healthCheckDefault = {
       port: 'traffic-port',
@@ -187,7 +189,7 @@ export class FargateFastAutoscaler extends cdk.Construct {
       protocol: elbv2.ApplicationProtocol.HTTP,
       healthCheck: healthCheckDefault,
       targets: [demoService],
-      deregistrationDelay: cdk.Duration.seconds(3),
+      deregistrationDelay: Duration.seconds(3),
     });
 
 
@@ -217,8 +219,8 @@ export class FargateFastAutoscaler extends cdk.Construct {
     }));
 
     // const uniqueId = crypto.createHash('md5').update(this.node.path).digest("hex");
-    cdk.Stack.of(this).templateOptions.transforms = ['AWS::Serverless-2016-10-31']; // required for AWS::Serverless
-    const resource = new cdk.CfnResource(this, 'Resource', {
+    Stack.of(this).templateOptions.transforms = ['AWS::Serverless-2016-10-31']; // required for AWS::Serverless
+    const resource = new CfnResource(this, 'Resource', {
       type: 'AWS::Serverless::Application',
       properties: {
         Location: {
@@ -228,7 +230,7 @@ export class FargateFastAutoscaler extends cdk.Construct {
         Parameters: {},
       },
     });
-    this.layerVersionArn = cdk.Token.asString(resource.getAtt('Outputs.LayerVersionArn'));
+    this.layerVersionArn = Token.asString(resource.getAtt('Outputs.LayerVersionArn'));
 
     const fargateWatcherFunc = new lambda.Function(this, 'fargateWatcherFunc', {
       runtime: lambda.Runtime.PROVIDED,
@@ -236,11 +238,11 @@ export class FargateFastAutoscaler extends cdk.Construct {
       code: lambda.Code.fromAsset(path.join(__dirname, '../sam/fargateWatcherFunc/func.d')),
       layers: [lambda.LayerVersion.fromLayerVersionArn(this, 'AwsCliLayer', this.layerVersionArn)],
       memorySize: 1024,
-      timeout: cdk.Duration.minutes(1),
+      timeout: Duration.minutes(1),
       role: lambdaRole,
       vpc: this.vpc,
-      vpcSubnets: { subnetType: ec2.SubnetType.PRIVATE },
-      securityGroup: sg,
+      vpcSubnets: { subnetType: ec2.SubnetType.PRIVATE_WITH_NAT },
+      securityGroups: [sg],
       environment: {
         cluster: fgCluster.clusterName,
         service: demoService.serviceName,
@@ -254,35 +256,36 @@ export class FargateFastAutoscaler extends cdk.Construct {
     // step function
     const wait3 = new sfn.Wait(this, 'Wait 3 Seconds', {
       // time: sfn.WaitTime.secondsPath('$.wait_time')
-      time: sfn.WaitTime.duration(cdk.Duration.seconds(3)),
+      time: sfn.WaitTime.duration(Duration.seconds(3)),
     });
     const wait60 = new sfn.Wait(this, 'Wait 60 Seconds', {
-      time: sfn.WaitTime.duration(cdk.Duration.seconds(60)),
+      time: sfn.WaitTime.duration(Duration.seconds(60)),
     });
 
-    const getEcsTasks = new sfn.Task(this, 'GetECSTasks', {
-      task: new sfn_tasks.InvokeFunction(lambda.Function.fromFunctionArn(this, 'getEcsTasks', fargateWatcherFunc.functionArn)),
+    // const getEcsTasks = new sfn.Task(this, 'GetECSTasks', {
+    //   task: new sfn_tasks.InvokeFunction(lambda.Function.fromFunctionArn(this, 'getEcsTasks', fargateWatcherFunc.functionArn)),
+    //   resultPath: '$.status',
+    // });
+
+    const getEcsTasks = new sfn_tasks.LambdaInvoke(this, 'GetECSTasks', {
+      lambdaFunction: lambda.Function.fromFunctionArn(this, 'getEcsTasks', fargateWatcherFunc.functionArn),
       resultPath: '$.status',
     });
-
     const topic = props.snsTopic ?? new sns.Topic(this, `${id}-topic`, {
-      topicName: `${cdk.Stack.of(this).stackName}-${id}`,
+      topicName: `${Stack.of(this).stackName}-${id}`,
     });
 
-    const snsScaleOut = new sfn.Task(this, 'SNSScaleOut', {
-      task: new sfn_tasks.PublishToTopic(topic, {
-        // message: sfn.TaskInput.fromDataAt('$'),
-        message: sfn.TaskInput.fromObject({
-          'Input.$': '$',
-        }),
-        subject: 'Fargate Start Scaling Out',
+    const snsScaleOut = new sfn_tasks.SnsPublish(this, 'SNSScaleOut', {
+      message: sfn.TaskInput.fromObject({
+        'Input.$': '$',
       }),
+      topic,
+      subject: 'Fargate Start Scaling Out',
       resultPath: '$.taskresult',
-
     });
-    const svcScaleOut = new sfn.Task(this, 'ServiceScaleOut', {
-      task: new sfn_tasks.InvokeFunction(lambda.Function.fromFunctionArn(this, 'svcScaleOut', fargateWatcherFunc.functionArn)),
 
+    const svcScaleOut = new sfn_tasks.LambdaInvoke(this, 'ServiceScaleOut', {
+      lambdaFunction: lambda.Function.fromFunctionArn(this, 'svcScaleOut', fargateWatcherFunc.functionArn),
     });
 
     const isServiceOverloaded = new sfn.Choice(this, 'IsServiceOverloaded', {
@@ -339,11 +342,11 @@ export class FargateFastAutoscaler extends cdk.Construct {
 
     new sfn.StateMachine(this, 'FargateFastAutoscaler', {
       definition: chain,
-      timeout: cdk.Duration.hours(24),
+      timeout: Duration.hours(24),
     });
 
-    new cdk.CfnOutput(this, 'ClusterARN: ', { value: fgCluster.clusterArn });
-    new cdk.CfnOutput(this, 'URL: ', { value: 'http://' + externalListener.loadBalancer.loadBalancerDnsName });
-    new cdk.CfnOutput(this, 'FargateWatcherLambdaArn: ', { value: fargateWatcherFunc.functionArn });
+    new CfnOutput(this, 'ClusterARN: ', { value: fgCluster.clusterArn });
+    new CfnOutput(this, 'URL: ', { value: 'http://' + externalListener.loadBalancer.loadBalancerDnsName });
+    new CfnOutput(this, 'FargateWatcherLambdaArn: ', { value: fargateWatcherFunc.functionArn });
   }
 }

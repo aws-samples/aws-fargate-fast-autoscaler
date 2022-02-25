@@ -1,15 +1,13 @@
-const { AwsCdkConstructLibrary, DevEnvironmentDockerImage, Gitpod } = require('projen');
+const { awscdk, DevEnvironmentDockerImage, Gitpod } = require('projen');
 
-const AWS_CDK_LATEST_RELEASE = '1.78.0';
 const PROJECT_NAME = 'cdk-fargate-fastautoscaler';
 const PROJECT_DESCRIPTION = 'A JSII construct lib to build AWS Fargate Fast Autoscaler';
 const PROJECT_REPOSITORY = 'https://github.com/aws-samples/aws-fargate-fast-autoscaler.git';
-const AUTOMATION_TOKEN = 'PROJEN_GITHUB_TOKEN';
 
-const project = new AwsCdkConstructLibrary({
+const project = new awscdk.AwsCdkConstructLibrary({
   authorName: 'Pahud Hsieh',
   authorEmail: 'pahudnet@gmail.com',
-  cdkVersion: AWS_CDK_LATEST_RELEASE,
+  cdkVersion: '2.1.0',
   minNodeVersion: '12.20.0',
   name: PROJECT_NAME,
   description: PROJECT_DESCRIPTION,
@@ -28,24 +26,12 @@ const project = new AwsCdkConstructLibrary({
     ignoreProjen: false,
     workflowOptions: {
       labels: ['auto-approve', 'auto-merge'],
-      secret: AUTOMATION_TOKEN,
     },
   },
   autoApproveOptions: {
     secret: 'GITHUB_TOKEN',
     allowedUsernames: ['pahud'],
   },
-  cdkDependencies: [
-    '@aws-cdk/core',
-    '@aws-cdk/aws-ec2',
-    '@aws-cdk/aws-ecs',
-    '@aws-cdk/aws-elasticloadbalancingv2',
-    '@aws-cdk/aws-iam',
-    '@aws-cdk/aws-lambda',
-    '@aws-cdk/aws-sns',
-    '@aws-cdk/aws-stepfunctions',
-    '@aws-cdk/aws-stepfunctions-tasks',
-  ],
   python: {
     distName: 'cdk-fargate-fastautoscaler',
     module: 'cdk_fargate_fastautoscaler',
