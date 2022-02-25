@@ -8,7 +8,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   authorName: 'Pahud Hsieh',
   authorEmail: 'pahudnet@gmail.com',
   cdkVersion: '2.1.0',
-  minNodeVersion: '14.15.0',
+  minNodeVersion: '14.17.0',
   name: PROJECT_NAME,
   description: PROJECT_DESCRIPTION,
   repository: PROJECT_REPOSITORY,
