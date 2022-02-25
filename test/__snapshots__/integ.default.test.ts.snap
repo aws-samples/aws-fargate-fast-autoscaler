@@ -37,17 +37,10 @@ Object {
     },
   },
   "Parameters": Object {
-    "AssetParameterscc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508ArtifactHash7884D74D": Object {
-      "Description": "Artifact hash for asset \\"cc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508\\"",
-      "Type": "String",
-    },
-    "AssetParameterscc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508S3Bucket7C1537BB": Object {
-      "Description": "S3 bucket for asset \\"cc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508\\"",
-      "Type": "String",
-    },
-    "AssetParameterscc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508S3VersionKey70117FBC": Object {
-      "Description": "S3 key for asset version \\"cc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508\\"",
-      "Type": "String",
+    "BootstrapVersion": Object {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
   "Resources": Object {
@@ -61,29 +54,37 @@ Object {
           "Fn::Join": Array [
             "",
             Array [
-              "{\\"StartAt\\":\\"GetECSTasks\\",\\"States\\":{\\"GetECSTasks\\":{\\"Next\\":\\"IsServiceOverloaded\\",\\"Type\\":\\"Task\\",\\"Resource\\":\\"",
-              Object {
-                "Fn::GetAtt": Array [
-                  "FargateFastAutoscalerfargateWatcherFuncABFB8D87",
-                  "Arn",
-                ],
-              },
-              "\\",\\"ResultPath\\":\\"$.status\\"},\\"Wait 60 Seconds\\":{\\"Type\\":\\"Wait\\",\\"Seconds\\":60,\\"Next\\":\\"GetECSTasks\\"},\\"ServiceScaleOut\\":{\\"Next\\":\\"Wait 60 Seconds\\",\\"Type\\":\\"Task\\",\\"Resource\\":\\"",
-              Object {
-                "Fn::GetAtt": Array [
-                  "FargateFastAutoscalerfargateWatcherFuncABFB8D87",
-                  "Arn",
-                ],
-              },
-              "\\"},\\"SNSScaleOut\\":{\\"Next\\":\\"ServiceScaleOut\\",\\"Parameters\\":{\\"TopicArn\\":\\"",
-              Object {
-                "Ref": "FargateFastAutoscalerFargateFastAutoscalertopic289CC33D",
-              },
-              "\\",\\"Message\\":{\\"Input.$\\":\\"$\\"},\\"Subject\\":\\"Fargate Start Scaling Out\\"},\\"Type\\":\\"Task\\",\\"Resource\\":\\"arn:",
+              "{\\"StartAt\\":\\"GetECSTasks\\",\\"States\\":{\\"GetECSTasks\\":{\\"Next\\":\\"IsServiceOverloaded\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2}],\\"Type\\":\\"Task\\",\\"ResultPath\\":\\"$.status\\",\\"Resource\\":\\"arn:",
               Object {
                 "Ref": "AWS::Partition",
               },
-              ":states:::sns:publish\\",\\"ResultPath\\":\\"$.taskresult\\"},\\"Desire20\\":{\\"Type\\":\\"Pass\\",\\"Result\\":{\\"Desired\\":20},\\"OutputPath\\":\\"$\\",\\"Next\\":\\"SNSScaleOut\\"},\\"IsServiceOverloaded\\":{\\"Type\\":\\"Choice\\",\\"InputPath\\":\\"$.status\\",\\"Choices\\":[{\\"Variable\\":\\"$.avg\\",\\"NumericGreaterThanEquals\\":500,\\"Next\\":\\"Desire20\\"},{\\"Variable\\":\\"$.avg\\",\\"NumericGreaterThanEquals\\":300,\\"Next\\":\\"Desire15\\"},{\\"Variable\\":\\"$.avg\\",\\"NumericGreaterThanEquals\\":100,\\"Next\\":\\"Desire10\\"},{\\"Variable\\":\\"$.avg\\",\\"NumericGreaterThanEquals\\":50,\\"Next\\":\\"Desire2\\"},{\\"Variable\\":\\"$.avg\\",\\"NumericLessThan\\":0,\\"Next\\":\\"Done\\"}],\\"Default\\":\\"Wait 3 Seconds\\"},\\"Wait 3 Seconds\\":{\\"Type\\":\\"Wait\\",\\"Seconds\\":3,\\"Next\\":\\"GetECSTasks\\"},\\"Desire15\\":{\\"Type\\":\\"Pass\\",\\"Result\\":{\\"Desired\\":15},\\"OutputPath\\":\\"$\\",\\"Next\\":\\"SNSScaleOut\\"},\\"Desire10\\":{\\"Type\\":\\"Pass\\",\\"Result\\":{\\"Desired\\":10},\\"OutputPath\\":\\"$\\",\\"Next\\":\\"SNSScaleOut\\"},\\"Desire2\\":{\\"Type\\":\\"Pass\\",\\"Result\\":{\\"Desired\\":2},\\"OutputPath\\":\\"$\\",\\"Next\\":\\"SNSScaleOut\\"},\\"Done\\":{\\"Type\\":\\"Pass\\",\\"End\\":true}},\\"TimeoutSeconds\\":86400}",
+              ":states:::lambda:invoke\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "FargateFastAutoscalerfargateWatcherFuncABFB8D87",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload.$\\":\\"$\\"}},\\"Wait 60 Seconds\\":{\\"Type\\":\\"Wait\\",\\"Seconds\\":60,\\"Next\\":\\"GetECSTasks\\"},\\"ServiceScaleOut\\":{\\"Next\\":\\"Wait 60 Seconds\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2}],\\"Type\\":\\"Task\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "FargateFastAutoscalerfargateWatcherFuncABFB8D87",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload.$\\":\\"$\\"}},\\"SNSScaleOut\\":{\\"Next\\":\\"ServiceScaleOut\\",\\"Type\\":\\"Task\\",\\"ResultPath\\":\\"$.taskresult\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::sns:publish\\",\\"Parameters\\":{\\"TopicArn\\":\\"",
+              Object {
+                "Ref": "FargateFastAutoscalerFargateFastAutoscalertopic289CC33D",
+              },
+              "\\",\\"Message\\":{\\"Input.$\\":\\"$\\"},\\"Subject\\":\\"Fargate Start Scaling Out\\"}},\\"Desire20\\":{\\"Type\\":\\"Pass\\",\\"Result\\":{\\"Desired\\":20},\\"OutputPath\\":\\"$\\",\\"Next\\":\\"SNSScaleOut\\"},\\"IsServiceOverloaded\\":{\\"Type\\":\\"Choice\\",\\"InputPath\\":\\"$.status\\",\\"Choices\\":[{\\"Variable\\":\\"$.avg\\",\\"NumericGreaterThanEquals\\":500,\\"Next\\":\\"Desire20\\"},{\\"Variable\\":\\"$.avg\\",\\"NumericGreaterThanEquals\\":300,\\"Next\\":\\"Desire15\\"},{\\"Variable\\":\\"$.avg\\",\\"NumericGreaterThanEquals\\":100,\\"Next\\":\\"Desire10\\"},{\\"Variable\\":\\"$.avg\\",\\"NumericGreaterThanEquals\\":50,\\"Next\\":\\"Desire2\\"},{\\"Variable\\":\\"$.avg\\",\\"NumericLessThan\\":0,\\"Next\\":\\"Done\\"}],\\"Default\\":\\"Wait 3 Seconds\\"},\\"Wait 3 Seconds\\":{\\"Type\\":\\"Wait\\",\\"Seconds\\":3,\\"Next\\":\\"GetECSTasks\\"},\\"Desire15\\":{\\"Type\\":\\"Pass\\",\\"Result\\":{\\"Desired\\":15},\\"OutputPath\\":\\"$\\",\\"Next\\":\\"SNSScaleOut\\"},\\"Desire10\\":{\\"Type\\":\\"Pass\\",\\"Result\\":{\\"Desired\\":10},\\"OutputPath\\":\\"$\\",\\"Next\\":\\"SNSScaleOut\\"},\\"Desire2\\":{\\"Type\\":\\"Pass\\",\\"Result\\":{\\"Desired\\":2},\\"OutputPath\\":\\"$\\",\\"Next\\":\\"SNSScaleOut\\"},\\"Done\\":{\\"Type\\":\\"Pass\\",\\"End\\":true}},\\"TimeoutSeconds\\":86400}",
             ],
           ],
         },
@@ -262,23 +263,7 @@ Object {
             "Cpu": 0,
             "Essential": true,
             "Image": Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  Object {
-                    "Ref": "AWS::AccountId",
-                  },
-                  ".dkr.ecr.",
-                  Object {
-                    "Ref": "AWS::Region",
-                  },
-                  ".",
-                  Object {
-                    "Ref": "AWS::URLSuffix",
-                  },
-                  "/aws-cdk/assets:cf4b53f054ebfe456104c0dd306789684184da901940ed21860bcd3021370a74",
-                ],
-              ],
+              "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:88bb716e5d67e16ba391f10ca8b7f92f20b4b38699e88a6fd6286140611b1422",
             },
             "LogConfiguration": Object {
               "LogDriver": "awslogs",
@@ -304,23 +289,7 @@ Object {
             "Cpu": 0,
             "Essential": true,
             "Image": Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  Object {
-                    "Ref": "AWS::AccountId",
-                  },
-                  ".dkr.ecr.",
-                  Object {
-                    "Ref": "AWS::Region",
-                  },
-                  ".",
-                  Object {
-                    "Ref": "AWS::URLSuffix",
-                  },
-                  "/aws-cdk/assets:c90dd04cc90d5dcf6d483f813e9e0458e5c79f13c09003ec5344fb03e8fb75f7",
-                ],
-              ],
+              "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:ebb8346dc97d9d9edb5db0d4e461d1003d4666caf84ee4dc520757ebf5a4664c",
             },
             "LogConfiguration": Object {
               "LogDriver": "awslogs",
@@ -392,7 +361,10 @@ Object {
                     Object {
                       "Ref": "AWS::AccountId",
                     },
-                    ":repository/aws-cdk/assets",
+                    ":repository/",
+                    Object {
+                      "Fn::Sub": "cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}",
+                    },
                   ],
                 ],
               },
@@ -607,41 +579,9 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameterscc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508S3Bucket7C1537BB",
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                Object {
-                  "Fn::Select": Array [
-                    0,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameterscc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508S3VersionKey70117FBC",
-                        },
-                      ],
-                    },
-                  ],
-                },
-                Object {
-                  "Fn::Select": Array [
-                    1,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameterscc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508S3VersionKey70117FBC",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            ],
-          },
+          "S3Key": "cc8295b6207aa85465c7c126b4ee7d43a016dda06211bfec41c94f618c5e9508.zip",
         },
         "Environment": Object {
           "Variables": Object {
@@ -1167,6 +1107,33 @@ Object {
         },
       },
       "Type": "AWS::EC2::VPCGatewayAttachment",
+    },
+  },
+  "Rules": Object {
+    "CheckBootstrapVersion": Object {
+      "Assertions": Array [
+        Object {
+          "Assert": Object {
+            "Fn::Not": Array [
+              Object {
+                "Fn::Contains": Array [
+                  Array [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  Object {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
     },
   },
   "Transform": "AWS::Serverless-2016-10-31",
