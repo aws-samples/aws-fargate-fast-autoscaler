@@ -49,7 +49,7 @@
     "jsii-diff": "^1.42.0",
     "jsii-docgen": "^1.8.110",
     "jsii-pacmak": "^1.42.0",
-    "json-schema": "^0.3.0",
+    "json-schema": "^0.4.0",
     "npm-check-updates": "^11",
     "projen": "^0.32.3",
     "standard-version": "^9",
