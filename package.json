@@ -71,7 +71,7 @@
     "fargate"
   ],
   "engines": {
-    "node": ">= 12.20.0"
+    "node": ">= 12.22.0"
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",
