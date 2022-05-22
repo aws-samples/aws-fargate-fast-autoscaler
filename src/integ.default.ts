@@ -1,8 +1,6 @@
-import * as path from 'path';
 import {
   Stack, App,
   aws_ec2 as ec2,
-  aws_ecs as ecs,
 } from 'aws-cdk-lib';
 import { FargateFastAutoscaler } from './autoscaler';
 
@@ -18,13 +16,6 @@ export class IntegTesting {
 
     new FargateFastAutoscaler(stack, 'FargateFastAutoscaler', {
       vpc,
-      backendContainer: {
-        image: ecs.ContainerImage.fromAsset(path.join(__dirname, '../sample/backend/php')),
-        cpu: 0,
-        logging: new ecs.AwsLogDriver({
-          streamPrefix: 'echo-http-req',
-        }),
-      },
     });
 
     this.stack = [stack];

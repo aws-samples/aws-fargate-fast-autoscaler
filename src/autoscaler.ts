@@ -9,11 +9,15 @@ import {
   aws_sns as sns,
   aws_stepfunctions as sfn,
   aws_stepfunctions_tasks as sfn_tasks,
+  aws_s3 as s3,
+  aws_kinesisfirehose as firehose,
 } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
 const AWSCLI_LAYER_ARN = 'arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-awscli';
 const AWSCLI_LAYER_VERSION = '1.16.281';
+const BUCKET_NAME = '<NEW-BUCKET-NAME>';  // Change this bucket name.
+const STREAM_NAME = 'DELIVERY-STREAM-S3';
 
 export interface FargateFastAutoscalerProps {
   /**
@@ -41,11 +45,6 @@ export interface FargateFastAutoscalerProps {
    * @default - AWSCLI_LAYER_VERSION
    */
   readonly awsCliLayerVersion?: string;
-
-  /**
-   * backend container
-   */
-  readonly backendContainer: ecs.ContainerDefinitionOptions;
 
   /**
    * initial number of tasks for the service
@@ -77,13 +76,43 @@ export class FargateFastAutoscaler extends Construct {
     this.vpc = props.vpc;
     this.region = Stack.of(this).region;
 
+    // S3
+    const streamDestinationBucket = new s3.Bucket(this, 'streamDestinationBucket', {
+      bucketName: BUCKET_NAME
+    });
+
+    // Firehose
+    const deliveryStreamRole = new iam.Role(this, "deliveryStreamRole", {
+      assumedBy: new iam.ServicePrincipal("firehose.amazonaws.com"),
+    });
+
+    deliveryStreamRole.addToPolicy(
+      new iam.PolicyStatement({
+        actions: [
+          's3:*',
+	],
+	effect: iam.Effect.ALLOW,
+	resources: [
+          streamDestinationBucket.bucketArn, `${streamDestinationBucket.bucketArn}/*`,
+	],
+      })
+    );
+
+    new firehose.CfnDeliveryStream(this, "deliveryStream", {
+      deliveryStreamName: STREAM_NAME,
+      deliveryStreamType: "DirectPut",
+      s3DestinationConfiguration: {
+        bucketArn: streamDestinationBucket.bucketArn,
+	roleArn: deliveryStreamRole.roleArn,
+      },
+    });
+
     // create a security group that allows all traffic from the same sg
     const sg = new ec2.SecurityGroup(this, 'SharedSecurityGroup', {
       vpc: this.vpc,
     });
     sg.connections.allowFrom(sg, ec2.Port.allTraffic());
     sg.connections.allowFrom(ec2.Peer.ipv4('10.0.0.0/16'), ec2.Port.allTraffic());
-
 
 
     // // Fargate Cluster
@@ -99,7 +128,7 @@ export class FargateFastAutoscaler extends Construct {
 
     taskIAMRole.addToPolicy(new iam.PolicyStatement({
       resources: ['*'],
-      actions: ['xray:PutTraceSegments'],
+      actions: ['xray:PutTraceSegments', 'firehose:PutRecordBatch'],
     }));
 
     // ECS task definition
@@ -114,8 +143,23 @@ export class FargateFastAutoscaler extends Construct {
     const mainContainer = demoTaskDef.addContainer('main', {
       image: ecs.ContainerImage.fromAsset(path.join(__dirname, '../nginx')),
       cpu: 0,
+      logging: ecs.LogDrivers.firelens({
+	options: {
+	  Name: "kinesis_firehose",
+	  region: this.region,
+	  delivery_stream: STREAM_NAME,
+	},
+      }),
+    });
+
+    demoTaskDef.addFirelensLogRouter('backend', {
+      firelensConfig: {
+        type: ecs.FirelensLogRouterType.FLUENTBIT,
+      },
+      image: ecs.ContainerImage.fromRegistry('public.ecr.aws/aws-observability/aws-for-fluent-bit:latest'),
+      cpu: 0,  
       logging: new ecs.AwsLogDriver({
-        streamPrefix: 'echo-http-req',
+        streamPrefix: 'firelens',
       }),
     });
 
