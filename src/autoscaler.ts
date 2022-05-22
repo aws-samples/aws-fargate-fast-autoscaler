@@ -135,6 +135,10 @@ export class FargateFastAutoscaler extends Construct {
     const demoTaskDef = new ecs.FargateTaskDefinition(this, 'cdk-fargate-demo-taskdef', {
       cpu: 256,
       memoryLimitMiB: 512,
+      runtimePlatform: {
+        operatingSystemFamily: ecs.OperatingSystemFamily.LINUX,
+	cpuArchitecture: ecs.CpuArchitecture.ARM64,
+      },
       taskRole: taskIAMRole,
     });
 
@@ -156,7 +160,7 @@ export class FargateFastAutoscaler extends Construct {
       firelensConfig: {
         type: ecs.FirelensLogRouterType.FLUENTBIT,
       },
-      image: ecs.ContainerImage.fromRegistry('public.ecr.aws/aws-observability/aws-for-fluent-bit:latest'),
+      image: ecs.ContainerImage.fromRegistry('amazon/aws-for-fluent-bit:arm64-2.9.0'),
       cpu: 0,  
       logging: new ecs.AwsLogDriver({
         streamPrefix: 'firelens',
