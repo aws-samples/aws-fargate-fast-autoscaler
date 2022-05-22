@@ -317,25 +317,25 @@ export class FargateFastAutoscaler extends Construct {
     const chain = sfn.Chain
       .start(getEcsTasks)
       .next(isServiceOverloaded
-        .when(sfn.Condition.numberGreaterThanEquals('$.avg', 500), desire20
+        .when(sfn.Condition.numberGreaterThanEquals('$.Payload.avg', 500), desire20
           .next(snsScaleOut
             .next(svcScaleOut
               .next(wait60
                 .next(getEcsTasks,
                 )))))
-        .when(sfn.Condition.numberGreaterThanEquals('$.avg', 300), desire15
+        .when(sfn.Condition.numberGreaterThanEquals('$.Payload.avg', 300), desire15
           .next(snsScaleOut,
           ))
-        .when(sfn.Condition.numberGreaterThanEquals('$.avg', 100), desire10
+        .when(sfn.Condition.numberGreaterThanEquals('$.Payload.avg', 100), desire10
           .next(snsScaleOut,
           ))
-        .when(sfn.Condition.numberGreaterThanEquals('$.avg', 50), desire2
+        .when(sfn.Condition.numberGreaterThanEquals('$.Payload.avg', 50), desire2
           .next(snsScaleOut,
           ))
-        // .when(sfn.Condition.numberLessThanEquals('$.avg', 10), desire2
+        // .when(sfn.Condition.numberLessThanEquals('$.Payload.avg', 10), desire2
         //     .next(snsScaleOut
         // ))
-        .when(sfn.Condition.numberLessThan('$.avg', 0), isDone)
+        .when(sfn.Condition.numberLessThan('$.Payload.avg', 0), isDone)
         .otherwise(wait3
           .next(getEcsTasks),
         ));
