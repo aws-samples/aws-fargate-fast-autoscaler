@@ -25,9 +25,6 @@ export class IntegTesting {
           streamPrefix: 'echo-http-req',
         }),
       },
-      backendContainerPortMapping: [
-        { containerPort: 2015 },
-      ],
     });
 
     this.stack = [stack];

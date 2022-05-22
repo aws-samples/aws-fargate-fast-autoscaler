@@ -48,11 +48,6 @@ export interface FargateFastAutoscalerProps {
   readonly backendContainer: ecs.ContainerDefinitionOptions;
 
   /**
-   * container port for the backend container
-   */
-  readonly backendContainerPortMapping: ecs.PortMapping[];
-
-  /**
    * initial number of tasks for the service
    *
    * @default - 2
@@ -87,16 +82,8 @@ export class FargateFastAutoscaler extends Construct {
       vpc: this.vpc,
     });
     sg.connections.allowFrom(sg, ec2.Port.allTraffic());
+    sg.connections.allowFrom(ec2.Peer.ipv4('10.0.0.0/16'), ec2.Port.allTraffic());
 
-
-    //sg for HTTP public access
-    const httpPublicSecurityGroup = new ec2.SecurityGroup(this, 'HttpPublicSecurityGroup', {
-      allowAllOutbound: true,
-      securityGroupName: 'HttpPublicSecurityGroup',
-      vpc: this.vpc,
-    });
-
-    httpPublicSecurityGroup.connections.allowFromAnyIpv4(ec2.Port.tcp(80));
 
 
     // // Fargate Cluster
@@ -132,8 +119,6 @@ export class FargateFastAutoscaler extends Construct {
       }),
     });
 
-    const backendContainer = demoTaskDef.addContainer('backend', props.backendContainer);
-
     // const phpContainer = demoTaskDef.addContainer('backend', {
     //   image: ecs.ContainerImage.fromAsset('./php', {}),
     //   cpu: 0,
@@ -147,8 +132,6 @@ export class FargateFastAutoscaler extends Construct {
     mainContainer.addPortMappings({
       containerPort: 80,
     });
-
-    backendContainer.addPortMappings(...props.backendContainerPortMapping);
 
     // phpContainer.addPortMappings({
     //   containerPort: 2015
@@ -164,30 +147,18 @@ export class FargateFastAutoscaler extends Construct {
     this.fargateService = demoService;
 
 
-    const externalLB = new elbv2.ApplicationLoadBalancer(this, 'external', {
+    const externalLB = new elbv2.NetworkLoadBalancer(this, 'external', {
       vpc: this.vpc,
       internetFacing: true,
-      securityGroup: httpPublicSecurityGroup,
     });
 
     const externalListener = externalLB.addListener('PublicListener', {
       port: 80,
     });
 
-    const healthCheckDefault = {
-      port: 'traffic-port',
-      path: '/',
-      intervalSecs: 30,
-      timeoutSeconds: 5,
-      healthyThresholdCount: 5,
-      unhealthyThresholdCount: 2,
-      healthyHttpCodes: '200,301,302',
-    };
-
     externalListener.addTargets('fg-echo-req', {
       port: 80,
-      protocol: elbv2.ApplicationProtocol.HTTP,
-      healthCheck: healthCheckDefault,
+      protocol: elbv2.Protocol.TCP,
       targets: [demoService],
       deregistrationDelay: Duration.seconds(3),
     });
