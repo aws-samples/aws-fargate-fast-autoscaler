@@ -15,25 +15,25 @@ jobs:
       CI: "true"
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
       - name: Setup Node.js
-        uses: actions/setup-node@v2.2.0
+        uses: actions/setup-node@v3
         with:
           node-version: 14.17.0
       - name: Install dependencies
         run: yarn install --check-files
       - name: build
         run: npx projen build
-      - id: self_mutation
-        name: Find mutations
+      - name: Find mutations
+        id: self_mutation
         run: |-
           git add .
           git diff --staged --patch --exit-code > .repo.patch || echo "::set-output name=self_mutation_happened::true"
-      - if: steps.self_mutation.outputs.self_mutation_happened
-        name: Upload patch
+      - name: Upload patch
+        if: steps.self_mutation.outputs.self_mutation_happened
         uses: actions/upload-artifact@v2
         with:
           name: .repo.patch
@@ -44,6 +44,9 @@ jobs:
           echo "::error::Files were changed during build (see build log). If this was triggered from a fork, you will need to update your branch."
           cat .repo.patch
           exit 1
+      - name: Backup artifact permissions
+        run: cd dist && getfacl -R . > permissions-backup.acl
+        continue-on-error: true
       - name: Upload artifact
         uses: actions/upload-artifact@v2.1.1
         with:
@@ -57,13 +60,13 @@ jobs:
     if: always() && needs.build.outputs.self_mutation_happened && !(github.event.pull_request.head.repo.full_name != github.repository)
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
       - name: Download patch
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: .repo.patch
           path: ${{ runner.temp }}
@@ -84,14 +87,17 @@ jobs:
     permissions: {}
     if: "! needs.build.outputs.self_mutation_happened"
     steps:
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 14.17.0
       - name: Download build artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: build-artifact
           path: dist
+      - name: Restore build artifact permissions
+        run: cd dist && setfacl --restore=permissions-backup.acl
+        continue-on-error: true
       - name: Prepare Repository
         run: mv dist .repo
       - name: Install Dependencies
@@ -106,17 +112,20 @@ jobs:
     permissions: {}
     if: "! needs.build.outputs.self_mutation_happened"
     steps:
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14.x
-      - uses: actions/setup-python@v2
+          node-version: 14.17.0
+      - uses: actions/setup-python@v3
         with:
           python-version: 3.x
       - name: Download build artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: build-artifact
           path: dist
+      - name: Restore build artifact permissions
+        run: cd dist && setfacl --restore=permissions-backup.acl
+        continue-on-error: true
       - name: Prepare Repository
         run: mv dist .repo
       - name: Install Dependencies
